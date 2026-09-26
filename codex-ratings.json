@@ -385,7 +385,7 @@
         "components": [
           "Omnara"
         ],
-        "finding": "Can use compatible local model endpoints; no extraction-model training or promotion workflow found.",
+        "finding": "Can target compatible model endpoints when deployment egress permits; the inspected production HTTP policy restricts private and loopback addresses, so production local-inference compatibility is not established. No extraction-model training or promotion workflow was found.",
         "sources": [
           "omnara/docs/organization/model-providers.mdx:1",
           "omnara/internal/modelprovider/resolver.go:1"
@@ -911,6 +911,11 @@
       "side": "omnara",
       "score_changed": false,
       "reason": "After Opus review, verified production network restrictions and qualified local-endpoint compatibility."
+    },
+    {
+      "row": "C12",
+      "change": "Qualified compatible local endpoint claim by the verified production egress policy; score unchanged at 1.",
+      "basis": "Lead source adjudication after independent audits; original seal preserved."
     }
   ]
 }
