@@ -4,6 +4,8 @@
 
 Independent audits from **Codex / gpt-6-astra Max**, **Opus 5.5** (Max requested; native effort receipt unavailable), and **Grok 4.7 Extra High** compare BORG, shared memory, Plimsoll, and Omnara.
 
+The interface has four focused views: Overview, Compare, Recommendations, and Auditors. It begins with a plain-language decision, defaults to eight key capability differences, and puts original scores and sources in on-demand detail panels. Recommendations are grouped by order of action with benefits, first steps, success checks, and an illustrative operator-screen sketch. See the [UI design guide](UI-DESIGN-NOTES.md).
+
 The finished report contains 26 capabilities, 148 individual system ratings, 421 pinned public source links, six prioritized reciprocal opportunities, and each auditor’s own findings. Twenty-four capabilities were rated by all three; two additional capabilities were proposed and rated by Opus. No absent rating is treated as zero.
 
 Read [the ChatGPT-ready report](REPORT.md), download [the CSV](capabilities.csv), or inspect the [machine-readable ratings](all-ratings.json). Scores are independent expert judgments, not measured benchmarks or production certification.
