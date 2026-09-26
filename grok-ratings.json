@@ -680,7 +680,7 @@
         "components": [
           "Omnara"
         ],
-        "finding": "Searches for pull-request and merged-outcome linkage in Omnara docs and Go found release-tool GitHub URLs and module paths, not a [private session] join. Queryable Postgres is documented as a place an operator could build that analysis.",
+        "finding": "Searches for pull-request and merged-outcome linkage in Omnara docs and Go found release-tool GitHub URLs and module paths, not a session-to-shipped-PR join. Queryable Postgres is documented as a place an operator could build that analysis.",
         "sources": [
           "packet/omnara/README.md:74-76",
           "packet/omnara/tools/omnarad-release/main.go:19-20"
