@@ -1,0 +1,615 @@
+# My Systems × Omnara: independent capability audit
+
+Evidence date: 25 September 2026, America/Denver. Scope: BORG, the shared memory system, Plimsoll, and explicitly named adjacent fleet tools versus the pinned Omnara source. This is a source and bounded-runtime audit, not a production certification.
+
+## Lead judgment
+
+Omnara is the more cohesive managed-agent execution product in the inspected source. Our stack has stronger differentiated capabilities in shared semantic and temporal memory, native owner-machine control, measured fleet ownership, and privacy-aware work economics. The best initial move is a small integration experiment, not a wholesale migration.
+
+Use Omnara’s interaction/timeline and recovery contracts as design references. Offer a project-scoped BORG memory MCP example and a Plimsoll usage/outcome adapter. Test identity isolation, recovery, duplicate handling and coverage before expanding. Compatibility and economic benefit remain hypotheses to verify.
+
+## How to read the matrix
+
+Every cell lists **Codex / Opus / Grok** in that order. Each auditor inspected the common frozen packet independently and could inspect supplementary files from the pinned public revisions; the lead’s initial ratings were sealed before reading either other audit. No combined total or weighted winner is calculated. A feature total would double-count overlapping functions and conceal different product purposes.
+
+Scores: **0** scoped absence; **1** narrow prototype; **2** partial with major limits; **3** useful implementation; **4** mature design with substantial coverage; **5** comprehensive operational proof. **?** means unknown, never zero. These are expert judgments, not measured benchmarks. “Not found” means not found in the stated inspection scope; MCP extensibility is not credited as an already implemented feature.
+
+Criticality is 1–5 for James’s reliable multi-agent operations. The common 24 rows use the lead’s criticality; Opus proposed C25 and C26, which use its criticality; the CSV and interactive viewer preserve every auditor’s own rating.
+
+| Capability | Criticality | My Systems — C / O / G | Omnara — C / O / G |
+|---|---:|---|---|
+| C01 · Models and provider interoperability | 5 | 3 (present) / 3 (partial) / ? (pending) | 4 (present) / 4 (present) / ? (pending) |
+| C02 · Durable state and crash recovery | 5 | 3 (partial) / 2 (partial) / ? (pending) | 4 (present) / 4 (present) / ? (pending) |
+| C03 · Steer, cancel and continue work | 5 | 4 (present) / 3 (partial) / ? (pending) | 4 (present) / 4 (present) / ? (pending) |
+| C04 · Subagents and coordination | 5 | 4 (present) / 3 (partial) / ? (pending) | 4 (present) / 3 (present) / ? (pending) |
+| C05 · Own machines and multiple hosts | 5 | 4 (present) / 3 (present) / ? (pending) | 4 (present) / 4 (present) / ? (pending) |
+| C06 · Disposable cloud sandboxes | 3 | 0 (not found) / 1 (partial) / ? (pending) | 4 (present) / 4 (present) / ? (pending) |
+| C07 · Native desktop and browser tools | 4 | 4 (present) / 2 (partial) / ? (pending) | 0 (not found) / 1 (partial) / ? (pending) |
+| C08 · MCP, skills and custom tools | 5 | 4 (present) / 3 (present) / ? (pending) | 4 (present) / 4 (present) / ? (pending) |
+| C09 · Shared semantic memory | 5 | 4 (present) / 3 (present) / ? (pending) | 0 (not found) / 0 (not found) / ? (pending) |
+| C10 · Temporal graph and provenance | 5 | 3 (partial) / 3 (present) / ? (pending) | 0 (not found) / 0 (not found) / ? (pending) |
+| C11 · Capture, consolidation and retention | 4 | 3 (present) / 3 (partial) / ? (pending) | 1 (partial) / 1 (partial) / ? (pending) |
+| C12 · Local inference and learned extraction | 3 | 3 (present) / 3 (present) / ? (pending) | 1 (partial) / 1 (partial) / ? (pending) |
+| C13 · Operator dashboard and live timelines | 4 | 2 (partial) / 2 (partial) / ? (pending) | 4 (present) / 4 (present) / ? (pending) |
+| C14 · Organizations, projects and roles | 4 | 3 (partial) / 2 (partial) / ? (pending) | 4 (present) / 4 (present) / ? (pending) |
+| C15 · Approvals and credential boundaries | 5 | 3 (present) / 2 (partial) / ? (pending) | 4 (present) / 3 (present) / ? (pending) |
+| C16 · Schedules, events and notifications | 3 | 3 (present) / 3 (present) / ? (pending) | 4 (present) / 3 (present) / ? (pending) |
+| C17 · Capacity admission and work ownership | 5 | 3 (partial) / 3 (present) / ? (pending) | 2 (partial) / 2 (partial) / ? (pending) |
+| C18 · Subscription and account continuity | 4 | 3 (partial) / 3 (partial) / ? (pending) | 1 (partial) / 1 (partial) / ? (pending) |
+| C19 · Token and cost observability | 5 | 4 (present) / 3 (present) / ? (pending) | 4 (present) / 3 (present) / ? (pending) |
+| C20 · Shipped outcomes and value evidence | 5 | 3 (partial) / 2 (partial) / ? (pending) | 1 (partial) / 0 (not found) / ? (pending) |
+| C21 · Privacy and selective collection | 5 | 4 (present) / 3 (partial) / ? (pending) | 2 (partial) / 1 (partial) / ? (pending) |
+| C22 · Receipts, idempotency and acceptance | 5 | 4 (present) / 3 (present) / ? (pending) | 4 (present) / 3 (partial) / ? (pending) |
+| C23 · Self-hosting and installation | 4 | 3 (partial) / 3 (partial) / ? (pending) | 4 (present) / 3 (present) / ? (pending) |
+| C24 · API, SDK and contributor experience | 3 | 3 (present) / 2 (partial) / ? (pending) | 4 (present) / 4 (present) / ? (pending) |
+| C25 · subscription-seat CLI agents as execution engines (added row; overlaps C01 and C18, not aggregated) | 5 | ? (not independently rated) / 3 (present) / ? (pending) | ? (not independently rated) / 0 (not found) / ? (pending) |
+| C26 · release integrity and cross-component contract consistency (added row) | 4 | ? (not independently rated) / 2 (partial) / ? (pending) | ? (not independently rated) / 4 (present) / ? (pending) |
+
+## Five lenses
+
+| Lens | Auditor | My Systems / 5 | Omnara / 5 | Reason |
+|---|---|---:|---:|---|
+| Managed Execution | Codex / Astra Max | 3 | 4 | Omnara provides a unified transactional agent lifecycle; ours composes native runtimes and receipts. |
+| Managed Execution | Opus 5.5 (Max requested) | 2 | 4 | Omnara owns a durable, lease-fenced Postgres kernel with steering, subagents, machines and sandboxes. Our execution depends on vendor CLIs plus a thin conductor with in-memory state, manual recovery, lossy polled events and a self-locking router ledger. Rows: C01-C08, C25. |
+| Collective Memory | Codex / Astra Max | 4 | 1 | Our explicit semantic and temporal recall exceeds conversation persistence; quality and freshness still need measurement. |
+| Collective Memory | Opus 5.5 (Max requested) | 3 | 1 | Ours is real, shared across four runtimes and provenance-aware, but thinly bounded, single-node and untested in CI. Omnara has only per-agent compaction and human-uploaded skills. Rows: C09-C12. |
+| Fleet Operations | Codex / Astra Max | 3 | 3 | We measure physical hosts and ownership; Omnara has cleaner pool lifecycle. Our model-label drift is a current usability defect. |
+| Fleet Operations | Opus 5.5 (Max requested) | 3 | 3 | Ours has the better admission and allowance design (fail-closed on unknown telemetry, allowance-ranked lanes; seat gate observed live), with operational cliffs. Omnara has production-grade machine custody and sandbox lifecycle, but static admission and no account routing. Rows: C05, C06, C16-C18. |
+| Delivery Economics | Codex / Astra Max | 3 | 2 | Plimsoll adds outcome/coverage contracts, while neither source audit proves causal ROI or fully reconciled billing. |
+| Delivery Economics | Opus 5.5 (Max requested) | 3 | 2 | Plimsoll measures CLI-seat cost with provenance and has outcome linkage by design, though linkage coverage was last measured at 13 of 2,423 sessions. Omnara has exact provider cost for its own agents, with no value linkage and no budgets. Rows: C18-C20. [Editorial date: this linkage figure comes from 20 August 2026; current coverage was not verified.] |
+| Product Readiness | Codex / Astra Max | 3 | 4 | Omnara has a cohesive API/dashboard. BORG and Plimsoll have distinct install and launch boundaries. |
+| Product Readiness | Opus 5.5 (Max requested) | 2 | 4 | Omnara: contract-first API and RBAC, SDK/CLI, heavy CI and signed releases; pre-1.0 with unsafe compose defaults. Ours: macOS-only, no SDK or spec, thin CI, estate leakage and drift, and a prototype Cloud trust boundary. Rows: C13-C15, C21-C24, C26. |
+
+## Agreements and disagreements
+
+Codex and Opus independently favor keeping the current native-agent fleet. Codex sees a valuable scoped integration opportunity; Opus puts internal reliability and boundary repairs ahead of any Omnara pilot. Grok’s independent assessment is still being collected.
+Opus rates our managed execution and product readiness below the lead because it found public-router reconciliation gaps and installed-versus-published drift. The lead confirms the source risks, while separating the public distribution from the installed estate; a source gap alone does not establish a current fleet outage.
+For native desktop/browser control, Codex gives Omnara 0 and Opus gives it 1. Opus allows limited credit to web tools and possible custom extensions. The lead’s narrower definition requires a built-in interactive control path, so generic extensibility gets no native-control credit.
+Omnara’s event durability is valuable but is not exactly-once external execution or an erasure policy. Opus’s “can never be deleted” and “every deploy duplicates spend” are stronger than the inspected evidence establishes: normal application deletion and ambiguous retry behavior are the supported findings.
+Opus cites 13 linked sessions out of 2,423 from a Plimsoll document dated 20 August 2026. That is historical evidence of a coverage problem, not a measurement of today’s fleet. Current linkage coverage remains unknown.
+
+## Material findings and lead adjudication
+
+### P0 before wider distribution · My Systems: Public router receipts need lifecycle closure
+
+The pinned BORG router reads terminal states but no normal completion writer was found in the inspected public router. Its receipt scan is bounded and its launch lock lacks stale-owner recovery. The lead confirms these source paths; installed estate failure is not established.
+
+**Action:** Verify the installed reconciler, then add or prove terminal reconciliation, safe retention and stale-lock recovery. Preserve native task identity and conflicting-work protection.
+
+### P0 before expanded access · My Systems: Capabilities outpace boundary and release consistency
+
+The local public conductor exposes powerful unauthenticated loopback operations. Public and installed memory copies also differ in privacy and replay behavior. Loopback and trusted stdio are trust assumptions, not proof of a remote exploit; deployment boundaries need explicit verification.
+
+**Action:** Review reachability and native caller identity, reconcile the authoritative source, and exercise the privacy and recovery contracts in release checks.
+
+### P1 integration constraint · Omnara: Production egress changes the memory plan
+
+Omnara’s inspected managed HTTP clients for models and MCP use an SSRF policy that blocks private and tailnet addresses, with loopback restricted outside development. A configured endpoint is therefore not proof of production compatibility. This does not establish the network behavior of arbitrary commands on a BYO machine.
+
+**Action:** Use a narrowly scoped, authenticated reachable endpoint, or design a reviewed deployment-specific allowlist. Preserve SSRF protection. Verify the installed memory endpoint rather than assuming a public BORG owner-wide gateway is the only option.
+
+### P0 before public deployment · Omnara: Product polish does not establish safe deployment
+
+Source shows permissive built-in tool policies, development defaults in Compose, and Slack interaction resolution without an Omnara-role mapping in the inspected route. These are configuration and authority boundaries to harden before handling sensitive work.
+
+**Action:** Separate development from production configuration, prove who may approve each action, and test secret exposure and recovery under the intended policy.
+
+### P1 data lifecycle · Both: Durability and deletion need separate contracts
+
+Omnara’s immutable operational records and soft deletion do not establish a user-data erasure workflow. Our selective capture and retention machinery is broader, but public capture-hook behavior and direct deletion paths are inconsistent. Neither side earns a complete privacy guarantee.
+
+**Action:** Define retention, tombstone, hard-deletion, audit-receipt and backup behavior explicitly; verify each boundary with synthetic data.
+
+### P1 evidence quality · My Systems: Cost-to-outcome measurement remains conditional
+
+Plimsoll’s accepted-outcome contracts and unknown-cost discipline are differentiated. They do not establish present-day attribution coverage or causal productivity gain. Its August coverage audit and this run’s timed-out status read leave current completeness unresolved.
+
+**Action:** Measure today’s denominators, model-price coverage and native acceptance links before presenting cost per delivered outcome. Treat private Cloud hardening findings separately from public contribution examples.
+
+
+## Reciprocal opportunities
+
+### P0 · Internal prerequisite: Close reliability and distribution gaps first
+
+The audit found concrete public-router lifecycle and installed/public memory drift risks. Removing those risks improves the current system before adding integration complexity.
+
+- Value: **5/5**. Effort estimate: **M · 3–7 engineering days for a scoped validation and repair tranche**.
+- Acceptance: A completed native task releases its claim; crash recovery preserves identity; the same synthetic memory event has consistent scope and identity across the supported distribution.
+- Main risk: A repair must preserve the live controller owner, existing tasks and intentionally different deployment profiles.
+
+### P1 · From Omnara: Durable events, leases and one operator view
+
+Study its event ledger, runtime leases, queued/steering input and resumable timeline. Put a read-only operator view over existing native systems first.
+
+- Value: **5/5**. Effort estimate: **M · 3–7 engineering days for a bounded prototype**.
+- Acceptance: Interrupt and reconnect one task; retain ordered events, current owner, pending interaction and final receipt without creating a competing task authority.
+- Main risk: An event ledger does not itself make external actions exactly once. Uncertain actions need reconciliation.
+
+### P1 · From Omnara: Executable policy and release contracts
+
+Reuse the design of a complete operation-to-policy map and generated API contract checks. Bring memory and connector checks into the actual release boundary.
+
+- Value: **5/5**. Effort estimate: **M · 3–7 engineering days for the highest-risk contract set**.
+- Acceptance: A missing operation policy fails startup or CI; incompatible SDK/schema changes fail checks; privacy and recovery fixtures run on release artifacts.
+- Main risk: Port patterns to the current native interfaces; copying an API surface would add unnecessary maintenance.
+
+### P2 · To Omnara: A scoped memory MCP reference integration
+
+Omnara already consumes MCP tools. A minimal memory-only profile can add cited cross-session recall and graph provenance without replacing its harness.
+
+- Value: **4/5**. Effort estimate: **M · 3–7 engineering days after endpoint hardening**.
+- Acceptance: A synthetic project retrieves its own memory and cannot retrieve another project’s; endpoint policy, revocation and stale/unknown status are demonstrated.
+- Main risk: Do not expose an owner-wide connector. Production egress compatibility and actual installed endpoint scope are prerequisites.
+
+### P2 · To Omnara: Usage-to-outcome events with honest coverage
+
+Provide a Plimsoll adapter and synthetic fixtures that link usage to accepted work while preserving reported, estimated and unknown cost.
+
+- Value: **4/5**. Effort estimate: **M · 3–7 engineering days for an adapter and fixtures**.
+- Acceptance: Replay counts once; prices retain provenance; acceptance revisions retain native evidence; coverage reports both numerator and denominator.
+- Main risk: Attribution is not causal ROI. The collector/Cloud contract and current source coverage need verification before exporting claims.
+
+### P3 · To Omnara: A measured admission hook for BYO hosts
+
+Offer a generic interface that checks fresh host pressure and work ownership before admitting an agent. This complements declared machine-pool limits.
+
+- Value: **4/5**. Effort estimate: **M · 3–7 engineering days for a narrow interface**.
+- Acceptance: Stale measurements remain unknown, competing ownership is rejected, and the final launch rechecks fit atomically.
+- Main risk: The public BORG router needs lifecycle repair before serving as a reusable reference implementation. Avoid publishing private fleet topology.
+
+## A bounded pilot
+
+Use one synthetic project, one Omnara agent, a project-scoped BORG memory MCP connection, and a Plimsoll event adapter. Confirm the chosen MCP address is reachable under Omnara’s egress policy and carries a revocable, narrowly scoped identity. Do not expose an owner-wide memory namespace.
+
+1. Run cross-project negative retrieval tests, including stale provenance and missing graph freshness.
+2. Kill and reconnect a worker. Prove stable task and event identities. Reconcile ambiguous side effects before replay.
+3. Replay usage and acceptance events. Count each exactly once and preserve reported, estimated and unknown cost fields.
+4. Compare operator effort, retrieval quality, recovery success and total observed cost against the existing workflow. Expand only if a material gain is demonstrated.
+
+These are proposed experiments. This audit does not implement or deploy them.
+
+## Evidence and boundaries
+
+- BORG: live connector/memory/graph status passed. A native memory query returned relevant candidate recall. Graph ingestion watermark and last complete scan were null, so freshness remains unknown.
+- 41 targeted BORG tests passed for concurrency, process handoff and independent settings. This is not a complete regression, safety or tenant-isolation certification.
+- Lead’s selected Omnara unit tests did not execute: Go 1.27.1 was required but Go 1.25.6 was installed. No hosted deployment, sandbox-provider acceptance or production load test was performed.
+- Plimsoll’s tracked working-tree snapshot includes uncommitted work. Its native status read exceeded the bounded audit deadline; the cause remains unknown. Plimsoll Cloud’s inspected README says test/hardening and not approved for paid production.
+- Our private installed estate includes functionality beyond the public BORG distribution. Source, configuration, deployed behavior and customer acceptance are separate evidence levels.
+- No causal ROI, universal recall quality, exactly-once external side effect, production security guarantee or full billing reconciliation is asserted.
+- Audit execution encountered a native Grok model-label/controller mismatch. Native model evidence, repair history and eventual audit status are preserved separately; a failed start is not an audit.
+
+### Revisions
+
+- **omnara**: [9f9ef08158c75d28d4d85dfb82f544e291a578c3](https://github.com/omnara-ai/omnara/tree/9f9ef08158c75d28d4d85dfb82f544e291a578c3) — fresh public clone
+- **borg**: [57ae994cfbe1cd4c1a88021b5df183cb71970c44](https://github.com/h3ro-dev/borg/tree/57ae994cfbe1cd4c1a88021b5df183cb71970c44) — fresh public clone
+- **plimsoll**: [480524f54286b106d978abf969455123aac1520f](https://github.com/CryptoJym/plimsoll/tree/480524f54286b106d978abf969455123aac1520f) — working-tree tracked text snapshot
+- **plimsoll-cloud**: `d2a2c3b04a66b5bff60aa31bea136b6af46e3c3a` — working-tree tracked text snapshot
+- **Memory runtime**: `installed source snapshot` — Selected installed source, hashed in the private audit packet; no memory records exported.
+
+### Licensing and contribution boundary
+
+Omnara’s frozen repository is Apache-2.0. BORG’s owner code is MIT, with separate third-party notices; the FalkorDB engine’s SSPL terms differ from its wrapper’s terms. Any concrete reuse should preserve the exact module’s notices and dependency boundary. These proposed contributions include public code, adapters and synthetic examples, not private cloud source, training corpora, credentials or memory records.
+
+## Row-by-row findings and sources
+
+### C01: Models and provider interoperability
+
+**Codex / Astra Max — criticality 5/5**
+
+- **My Systems: 3/5; present; source evidence.** Native provider tools and conductors plus cross-runtime hooks. This is several integrations, not one provider-neutral execution engine. A Grok model-label mismatch was observed in the fleet controller.
+  Sources: [borg/README.md:14](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/README.md#L14); [borg/conductor/README.md:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/README.md#L1).
+- **Omnara: 4/5; present; source evidence.** Provider-neutral configuration supports Responses, Chat Completions and Anthropic Messages. Production egress rejects loopback, LAN and tailnet addresses; local-model compatibility requires an appropriately reachable endpoint, not merely a compatible API.
+  Sources: [omnara/internal/model/provider_route.go:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/model/provider_route.go#L1); [omnara/docs/organization/model-providers.mdx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/organization/model-providers.mdx#L1); [omnara/internal/ssrf/ssrf.go:11](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/ssrf/ssrf.go#L11); [omnara/cmd/worker/main.go:193](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/cmd/worker/main.go#L193).
+
+**Opus 5.5 (Max requested) — criticality 4/5**
+
+- **My Systems: 3/5; partial; source evidence.** Deep Codex app-server bridge: pinned runtime, role instructions, identity-checked resume, fail-closed replies to approval requests. The Grok bridge resumes CLI sessions, but the installer does not provision it and the docs say to leave it disabled. BORG core's Claude path is a detached 'claude -p' that ignores packet.model and never tracks exit. The stack drives subscription CLI agents, which Omnara cannot. Claude-seat delegation in the ecosystem is live in this very run (fleet-delegate worker on Studio1). There is no API-protocol abstraction and no cross-provider failover.
+  Sources: [work/borg-public/conductor/conductor.mjs:87-98](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/conductor.mjs#L87); [work/borg-public/conductor/providers/launch-bus.mjs:140-159](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/providers/launch-bus.mjs#L140); [work/borg-public/conductor/providers/grok-conductor.mjs:372-378](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/providers/grok-conductor.mjs#L372); [borg/docs/SETUP.md:192-199](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/docs/SETUP.md#L192); [work/borg-public/conductor/config.mjs:161-178](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/config.mjs#L161); `BRIEF.md (this delegated run)` (reviewer pointer; not resolved in lead packet).
+- **Omnara: 4/5; present; source evidence.** Three wire protocols (OpenAI Responses, Chat Completions, Anthropic Messages) with OpenRouter and Bedrock variants and custom endpoints. Grants and model revisions are resolved on every call. Provider replay identity lets a conversation switch providers safely. Retries are classified, honour Retry-After and stop after 8. Gaps: no cross-provider failover. It runs its own harness on API keys and cannot drive subscription CLI agents (C25). Its production network filter blocks private, loopback and 100.64.0.0/10 (Tailscale) model endpoints. The docs say revoking a grant spares running agents; the code enforces the grant on every call.
+  Sources: [omnara/internal/modelprotocol/modelprotocol.go:12-18](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/modelprotocol/modelprotocol.go#L12); [omnara/internal/modelprovider/resolver.go:80-128](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/modelprovider/resolver.go#L80); [omnara/internal/modelretry/policy.go:49-122](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/modelretry/policy.go#L49); [omnara/internal/ssrf/ssrf.go:39-48](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/ssrf/ssrf.go#L39); [omnara/docs/organization/model-providers.mdx:107](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/organization/model-providers.mdx#L107).
+
+### C02: Durable state and crash recovery
+
+**Codex / Astra Max — criticality 5/5**
+
+- **My Systems: 3/5; partial; source evidence.** Operation receipts, durable jobs and native conductor history exist. No single transaction spans model state, the memory layer, fleet ownership and external side effects.
+  Sources: [borg/connector/operation_receipts.py:34](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/operation_receipts.py#L34); [borg/connector/job_tools.py:62](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/job_tools.py#L62); [borg/connector/README.md:75](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/README.md#L75).
+- **Omnara: 4/5; present; source evidence.** Postgres-backed execution state, runtime locks and explicit ambiguous model-call recovery. This does not guarantee exactly-once effects at an external tool.
+  Sources: [omnara/internal/storage/executionstore/agent_runtime_recovery_store.go:23](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/storage/executionstore/agent_runtime_recovery_store.go#L23); [omnara/internal/harness/worker/worker.go:240](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/harness/worker/worker.go#L240).
+
+**Opus 5.5 (Max requested) — criticality 5/5**
+
+- **My Systems: 2/5; partial; source evidence.** Evidence durability is strong. The router records intent and receipt before admission, with create-only writes. A lost response becomes UNKNOWN_DO_NOT_RETRY. After a crash, connector receipts become outcome_unknown. The vendored Inbox uses SQLite WAL with leases and a crash-safe client outbox. Execution recovery is weak: the conductor keeps its thread map and events in process memory, and recovery is manual. Verified cliff: no shipped code writes COMPLETED, FAILED, CANCELLED or RECONCILED_NO_START (only PRE_START_FAILED). The ledger scan rejects above 10,000 entries or 4 MiB, and a failed scan refuses all dispatch. dispatch.lock has no stale-PID recovery.
+  Sources: [work/borg-public/conductor/router/router.mjs:145](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/router/router.mjs#L145); [work/borg-public/conductor/router/router.mjs:688](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/router/router.mjs#L688); [work/borg-public/conductor/router/router.mjs:419-435](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/router/router.mjs#L419); [work/borg-public/conductor/router/router.mjs:636-643](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/router/router.mjs#L636); [work/borg-public/conductor/router/receipt-reader-worker.mjs:5-7](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/router/receipt-reader-worker.mjs#L5); [work/borg-public/conductor/conductor.mjs:392](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/conductor.mjs#L392); [borg/connector/operation_receipts.py:146-172](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/operation_receipts.py#L146); [borg/coordination/comms/hub/store.py:1408-1412](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/coordination/comms/hub/store.py#L1408).
+- **Omnara: 4/5; present; source evidence.** Postgres-authoritative kernel. A trigger makes agent_events immutable, with a unique sequence and idempotency key per agent. Each agent has one lease-fenced runtime lock (90 s default) renewed at about a third of the lease. Maintenance reaps expired locks every second, marks in-flight model calls outcome_ambiguous and running tools 'external outcome unknown'. The daemon keeps process reports in a SQLite outbox. Limits: a single Postgres point of failure with no HA or backup guidance; SIGTERM cancels in-flight turns with no drain, so deploys re-run model calls; model calls are at-least-once.
+  Sources: [omnara/migrations/000004_events_messages_turns.sql:74-89](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/migrations/000004_events_messages_turns.sql#L74); [omnara/internal/storage/executionstore/agent_runtime_locks_store.go:19-21](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/storage/executionstore/agent_runtime_locks_store.go#L19); [omnara/internal/storage/executionstore/agent_runtime_recovery_store.go:50-97](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/storage/executionstore/agent_runtime_recovery_store.go#L50); [omnara/internal/maintenance/core.go:34-42](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/maintenance/core.go#L34); [omnara/cmd/worker/main.go:72-75](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/cmd/worker/main.go#L72); [omnara/internal/machinedaemon/report_outbox.go:15-40](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/machinedaemon/report_outbox.go#L15).
+
+### C03: Steer, cancel and continue work
+
+**Codex / Astra Max — criticality 5/5**
+
+- **My Systems: 4/5; present; source evidence.** Native conductor start, steer and interrupt; connector predecessor handoff retains resident handles. Portability across runtimes is uneven.
+  Sources: [borg/conductor/README.md:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/README.md#L1); [borg/connector/process_handoff.py:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/process_handoff.py#L1).
+- **Omnara: 4/5; present; source evidence.** Queued versus steering input, cancellation and retained conversation are first-class. Archive is terminal; it is not a reversible pause.
+  Sources: [omnara/docs/events/sending-input.mdx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/events/sending-input.mdx#L1); [omnara/docs/agents/overview.mdx:83](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/agents/overview.mdx#L83).
+
+**Opus 5.5 (Max requested) — criticality 4/5**
+
+- **My Systems: 3/5; partial; source evidence.** Codex: native turn/steer guarded by expectedTurnId, plus turn/interrupt and thread/resume. Grok: steering is interrupt then resume. Claude: no steering. Events are polled from one 5,000-event in-memory ring shared by all threads, with no gap signal and no push stream. Steering is reachable only through unauthenticated loopback HTTP, not through MCP or any UI.
+  Sources: [work/borg-public/conductor/conductor.mjs:637-649](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/conductor.mjs#L637); [work/borg-public/conductor/conductor.mjs:392](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/conductor.mjs#L392); [work/borg-public/conductor/conductor.mjs:551-576](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/conductor.mjs#L551); [work/borg-public/conductor/providers/grok-conductor.mjs:1132-1180](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/providers/grok-conductor.mjs#L1132).
+- **Omnara: 4/5; present; source evidence.** Inputs are queued, steering or immediate, under a DB-enforced state machine. The backlog supports list, move, promote, demote and cancel. Cancel goes through the database and Redis, falls back to lease renewal, and uses an idempotent cancel_current key. Config can change mid-run. Steering waits for in-flight tool batches (it does not preempt); there is no pause/resume or unarchive; open approvals never expire.
+  Sources: [omnara/migrations/000004_events_messages_turns.sql:113-150](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/migrations/000004_events_messages_turns.sql#L113); [omnara/internal/storage/executionstore/agent_runtime_cancellation_store.go:126-240](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/storage/executionstore/agent_runtime_cancellation_store.go#L126); [omnara/internal/storage/executionstore/agent_inputs_store.go:156-195](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/storage/executionstore/agent_inputs_store.go#L156); [omnara/docs/events/sending-input.mdx:14-23](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/events/sending-input.mdx#L14).
+
+### C04: Subagents and coordination
+
+**Codex / Astra Max — criticality 5/5**
+
+- **My Systems: 4/5; present; source evidence.** Native agents, leased Inbox messages, versioned assignments and Beads dependencies. Native delivery and actual work acceptance remain separate.
+  Sources: [borg/coordination/README.md:3](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/coordination/README.md#L3); [borg/coordination/INTEGRATION.md:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/coordination/INTEGRATION.md#L1).
+- **Omnara: 4/5; present; source evidence.** Configurable child-agent tools, parent IDs, messaging and timelines. Human interactions are separate from parent responses.
+  Sources: [omnara/internal/harness/tools/subagent_tools.go:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/harness/tools/subagent_tools.go#L1); [omnara/docs/tools/built-in.mdx:244](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/tools/built-in.mdx#L244).
+
+**Opus 5.5 (Max requested) — criticality 5/5**
+
+- **My Systems: 3/5; partial; source evidence.** The Inbox has the most sophisticated authority model in either stack: leased deliveries; authority re-validated at delivery time, so lapsed instructions are rejected before lease; compare-and-set reassignment; delegable grants whose expiry cannot exceed the parent's. Beads is pinned upstream. But BORG's router and launch bus never consult the Inbox or Beads, the Inbox runtime hook ships unwired, and nothing links a dispatch receipt to an assignment or issue. Poison messages redeliver with no cap, and each BORG install has its own hub. Live: this audit was delegated from Studio0 to a Claude seat on Studio1, and the Inbox hook registered this session.
+  Sources: [borg/coordination/comms/hub/store.py:1443-1456](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/coordination/comms/hub/store.py#L1443); [borg/coordination/comms/hub/store.py:2191-2240](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/coordination/comms/hub/store.py#L2191); [borg/coordination/comms/hub/store.py:1901-1996](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/coordination/comms/hub/store.py#L1901); [borg/coordination/DEPENDENCIES.json:9-18](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/coordination/DEPENDENCIES.json#L9); [work/borg-public/conductor/providers/launch-bus.mjs:91-101](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/providers/launch-bus.mjs#L91).
+- **Omnara: 3/5; present; source evidence.** Built-in spawn/read/send/stop/list subagent tools. Spawn is transactional and idempotent, keyed by tool call ID, with per-key instance, total and depth caps (depth defaults to 1, maximum 8). Child results return to the parent as steering input, and children share the parent's machines. Tree only: no peer messaging, shared task ledger, work claims or ownership model. Children start with only the task string.
+  Sources: [omnara/internal/harness/tools/subagent_tools.go:250-262](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/harness/tools/subagent_tools.go#L250); [omnara/internal/storage/executionstore/subagents_store.go:368-428](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/storage/executionstore/subagents_store.go#L368); [omnara/migrations/000035_subagents.sql:3-53](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/migrations/000035_subagents.sql#L3); [omnara/docs/agents/configuration.mdx:204-242](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/agents/configuration.mdx#L204).
+
+### C05: Own machines and multiple hosts
+
+**Codex / Astra Max — criticality 5/5**
+
+- **My Systems: 4/5; present; source evidence.** Explicit SSH enrollment, identity-pinned fleet tool discovery and host-local resources. The deployed connector and the seven-host orchestration estate are different scopes.
+  Sources: [borg/connector/fleet_tools.py:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/fleet_tools.py#L1); [borg/README.md:123](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/README.md#L123).
+- **Omnara: 4/5; present; source evidence.** Outbound machine daemon and agents using several BYO or pooled machines. Runtime and persistent state are separated.
+  Sources: [omnara/docs/machines/connect.mdx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/machines/connect.mdx#L1); [omnara/docs/machines/connect.mdx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/machines/connect.mdx#L1).
+
+**Opus 5.5 (Max requested) — criticality 5/5**
+
+- **My Systems: 3/5; present; source evidence.** SSH fleet routing is identity-pinned. Enrollment verifies the target's identity. Every fleet_call re-pins identity, checks the target's tool schema and reports not_started or outcome_unknown. SSH runs with BatchMode, StrictHostKeyChecking=yes and '--'. It routes tools only: no memory, Inbox or conductor lanes are replicated. Conductor lanes must bind 127.0.0.1, and no remote capacity collectors ship. remote_tools hard-codes macOS sysctl and /bin/zsh. Whoever holds the controller's SSH keys has owner authority on every target.
+  Sources: [borg/connector/fleet_tools.py:97-103](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/fleet_tools.py#L97); [borg/connector/fleet_tools.py:219-260](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/fleet_tools.py#L219); [borg/installer/fleet.py:64-93](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/installer/fleet.py#L64); [work/borg-public/conductor/config.mjs:96-97](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/config.mjs#L96); [borg/connector/remote_tools.py:56-110](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/remote_tools.py#L56).
+- **Omnara: 4/5; present; source evidence.** One outbound-only daemon (HTTPS/WSS) serves both your own machines and sandboxes. A local SQLite outbox and runner custody survive restarts. After a 30 s grace, waiting calls get machine_unreachable without the process being killed. Every tool takes a machine_id, and machines can be added or removed at runtime. Risks: run_command defaults to always_allow; your own machines get no OS isolation; daemon tokens have no expiry column; self-update verifies only a SHA-256 from the same origin.
+  Sources: [omnara/internal/omnarad/daemon_config.go:304-314](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/omnarad/daemon_config.go#L304); [omnara/internal/machinedaemon/report_outbox.go:15-40](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/machinedaemon/report_outbox.go#L15); [omnara/migrations/000007_org_byo_machines.sql:5-21](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/migrations/000007_org_byo_machines.sql#L5); [omnara/internal/omnarad/update.go:595-607](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/omnarad/update.go#L595); [omnara/internal/toolcatalog/catalog.go:357](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/toolcatalog/catalog.go#L357).
+
+### C06: Disposable cloud sandboxes
+
+**Codex / Astra Max — criticality 3/5**
+
+- **My Systems: 0/5; not found; source evidence.** No first-class multi-provider sandbox pool lifecycle found in the inspected BORG distribution. Generic shell or SSH extensibility is not counted as the feature.
+  Sources: [borg/docs/COMPONENTS.md:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/docs/COMPONENTS.md#L1); [borg/connector/fleet_tools.py:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/fleet_tools.py#L1).
+- **Omnara: 4/5; present; source evidence.** Blaxel, Daytona, Modal and Unikraft provider implementations, pool/project limits, provisioning and cleanup. Remote-provider acceptance was not run.
+  Sources: [omnara/internal/machinepool/manager.go:71](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/machinepool/manager.go#L71); [omnara/docs/machines/pools.mdx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/machines/pools.mdx#L1).
+
+**Opus 5.5 (Max requested) — criticality 2/5**
+
+- **My Systems: 1/5; partial; source evidence.** No cloud sandbox lifecycle found. The search covered docker, podman, container, firecracker, e2b, modal, daytona, devcontainer, kubernetes, ec2 and fly.io over the connector, coordination, installer, docs, platform and conductor. The vendored Tart supervisor gives disposable, digest-pinned local macOS VM desktop leases with verified cleanup, but it is off by default, desktop-only and not wired by the installer. BORG's conductor defaults Codex to danger-full-access.
+  Sources: [borg/coordination/fleet_desktop/tart.py:119-356](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/coordination/fleet_desktop/tart.py#L119); [borg/coordination/comms/hub/cli.py:586-591](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/coordination/comms/hub/cli.py#L586); [work/borg-public/conductor/conductor.mjs:91](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/conductor.mjs#L91).
+- **Omnara: 4/5; present; source evidence.** Blaxel, Daytona, Modal and Unikraft sit behind one idempotent provisioning contract: record before the external call, with deterministic allocation names. Provider runtimes are reconciled and idle machines deleted, with count caps at pool, project, agent and org level, plus sleep/wake. No warm pools and no dollar caps. Orphan runtime protection is opt-in. Modal has a hard 24-hour limit.
+  Sources: [omnara/internal/machinepool/providers/provider.go:16-21](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/machinepool/providers/provider.go#L16); [omnara/internal/machinepool/providers/provider.go:49-129](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/machinepool/providers/provider.go#L49); [omnara/internal/machinepool/manager.go:387-446](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/machinepool/manager.go#L387); [omnara/migrations/000012_provider_runtime_reconciliation.sql:12](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/migrations/000012_provider_runtime_reconciliation.sql#L12).
+
+### C07: Native desktop and browser tools
+
+**Codex / Astra Max — criticality 4/5**
+
+- **My Systems: 4/5; present; source evidence.** Native macOS UI and browser tooling, session/resource locks and operating-system permission boundaries. A physical desktop still has one focus.
+  Sources: [borg/connector/native_ui.py:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/native_ui.py#L1); [borg/connector/native_browser.py:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/native_browser.py#L1); [borg/connector/README.md:24](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/README.md#L24).
+- **Omnara: 0/5; not found; source evidence.** No built-in native desktop or browser interaction surface found in the inspected tool catalog and implementations. Web search/fetch and shell execution are different capabilities. External MCP/browser automation remains an integration path.
+  Sources: [omnara/docs/tools/built-in.mdx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/tools/built-in.mdx#L1); [omnara/docs/tools/mcp.mdx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/tools/mcp.mdx#L1).
+
+**Opus 5.5 (Max requested) — criticality 3/5**
+
+- **My Systems: 2/5; partial; source evidence.** BORG ships a thin CDP browser (selector click and insertText, a fresh profile per session) and coordinate-only AppleScript UI behind a single desktop lock. The public release refuses the richer Peekaboo backend at config load, and the fleet_browser Playwright worker script is not shipped. The ecosystem browser/desktop broker is documented as a restricted pilot; its current state is unverified.
+  Sources: [borg/connector/native_browser.py:305-321](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/native_browser.py#L305); [borg/connector/native_ui.py:65-87](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/native_ui.py#L65); [borg/connector/borg_context_server.py:158-160](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/borg_context_server.py#L158); [borg/connector/concurrency.py:82-83](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/concurrency.py#L82).
+- **Omnara: 1/5; partial; source evidence.** Only static web_fetch (no JavaScript) and Exa web_search. No browser automation or desktop control found; the search covered playwright, puppeteer, computer-use, chromedp, xdotool, screenshot and vnc. Without an Exa key, search queries go to Exa's public keyless MCP endpoint by default.
+  Sources: [omnara/internal/webaccess/extract.go:22-42](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/webaccess/extract.go#L22); [omnara/internal/webaccess/exa.go:39-54](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/webaccess/exa.go#L39); [omnara/docs/tools/built-in.mdx:13-23](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/tools/built-in.mdx#L13).
+
+### C08: MCP, skills and custom tools
+
+**Codex / Astra Max — criticality 5/5**
+
+- **My Systems: 4/5; present; source evidence.** Authenticated MCP gateway, live capability discovery, native CLI and skill/catalog access. Source and runtime tool sets need reconciliation.
+  Sources: [borg/connector/borg_context_server.py:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/borg_context_server.py#L1); [borg/connector/capabilities.py:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/capabilities.py#L1).
+- **Omnara: 4/5; present; source evidence.** HTTP MCP with OAuth/bearer/SigV4, deferred discovery, custom tools and versioned skill packages. Some permission defaults differ by tool type.
+  Sources: [omnara/docs/tools/mcp.mdx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/tools/mcp.mdx#L1); [omnara/docs/tools/custom.mdx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/tools/custom.mdx#L1); [omnara/docs/tools/skills.mdx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/tools/skills.mdx#L1).
+
+**Opus 5.5 (Max requested) — criticality 4/5**
+
+- **My Systems: 3/5; present; source evidence.** An authenticated FastMCP gateway with about 60 tools (files, processes, jobs, browser, UI, credentials, fleet) and a versioned, schema-fingerprinted manifest. A stdio proxy keeps the bearer out of client config. A Cloudflare Access gateway serves web ChatGPT, and fleet_call reaches other hosts. The memory MCP adds 11 scoped tools. Gaps: owners cannot mount custom tools or MCP servers; skills are just paths; tool search is a substring match; the manifest names tools that do not exist. Most extensibility in practice comes from the native Codex and Claude MCP/skills support.
+  Sources: [borg/connector/borg_context_server.py:458-562](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/borg_context_server.py#L458); [borg/connector/capabilities.py:34-132](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/capabilities.py#L34); [borg/connector/cloudflare_gateway.py:84-156](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/cloudflare_gateway.py#L84); [borg/docs/COMPONENTS.md:253](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/docs/COMPONENTS.md#L253); `memory-runtime/mem0-mcp-server-v2:1932-2664` (source inspected; private or installed snapshot).
+- **Omnara: 4/5; present; source evidence.** Remote MCP (stateless and session protocols) with bearer, OAuth or SigV4 auth and a leased OAuth refresh. Also deferred tools with tool_search, durable custom tools (first result wins), versioned and granted skills synced to machines, and Omnara's own API as about 75 MCP tools. Gaps: no stdio MCP. The worker blocks private, loopback and 100.64.0.0/10 MCP hosts, so tailnet or LAN servers need public HTTPS. MCP timeouts are fixed at 30 s and 5 minutes.
+  Sources: [omnara/internal/mcp/catalog.go:43-58](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/mcp/catalog.go#L43); [omnara/internal/mcp/client.go:120-136](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/mcp/client.go#L120); [omnara/cmd/worker/main.go:142-143](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/cmd/worker/main.go#L142); [omnara/internal/httpapi/apimcp/manifest.go:13-75](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/httpapi/apimcp/manifest.go#L13); [omnara/docs/tools/custom.mdx:7-23](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/tools/custom.mdx#L7).
+
+### C09: Shared semantic memory
+
+**Codex / Astra Max — criticality 5/5**
+
+- **My Systems: 4/5; present; live evidence.** Scoped cross-session semantic recall is implemented and the native memory search returned relevant candidates in this audit. That does not prove recall quality for every workload.
+  Sources: `memory-runtime/mem0-mcp-server-v2:1932` (source inspected; private or installed snapshot); [borg/memory/bin/mem0-mcp-server-v2:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/memory/bin/mem0-mcp-server-v2#L1).
+- **Omnara: 0/5; not found; source evidence.** No built-in cross-agent semantic store found in agent config, tools, storage and docs. Conversation history and compaction are present; external MCP memory is possible.
+  Sources: [omnara/internal/compaction/planner.go:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/compaction/planner.go#L1); [omnara/internal/toolcatalog/names.go:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/toolcatalog/names.go#L1); [omnara/internal/agentconfig/source_schema.go:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/agentconfig/source_schema.go#L1).
+
+**Opus 5.5 (Max requested) — criticality 4/5**
+
+- **My Systems: 3/5; present; source evidence.** One local Qdrant store, 11 MCP tools and default-closed recall hooks for Codex, Claude, Grok and remote hosts, with per-principal hashed tokens and scope filters. The boundary is thin. stdio gets full access by design. Hooks and tools reach Qdrant directly, and the installer binds Qdrant to loopback without an API key. memory_search tells agents to use memory FIRST, with no candidate framing. No repo tests cover MCP scope enforcement. Single node.
+  Sources: `memory-runtime/mem0-mcp-server-v2:380-387` (source inspected; private or installed snapshot); `memory-runtime/mem0-mcp-server-v2:1932-1937` (source inspected; private or installed snapshot); [borg/installer/services.py:44-50](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/installer/services.py#L44); `memory-runtime/mem0-codex-hook:49-74` (source inspected; private or installed snapshot); [borg/memory/bin/mem0-claude-hook:70-83](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/memory/bin/mem0-claude-hook#L70).
+- **Omnara: 0/5; not found; source evidence.** No shared or cross-agent memory, vector store or retrieval tool found. The search covered embedding, pgvector, vector, rag, knowledge base, semantic search, memory and recall over internal, cmd, migrations, docs and api. The only hit was an embedding-model filter. What exists is per-agent context compaction and human-uploaded skills.
+  Sources: [omnara/internal/compaction/planner.go:32-39](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/compaction/planner.go#L32); [omnara/internal/modelprovider/discovery.go:378](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/modelprovider/discovery.go#L378).
+
+### C10: Temporal graph and provenance
+
+**Codex / Astra Max — criticality 5/5**
+
+- **My Systems: 3/5; partial; source evidence.** Graph scope validation, current-only filtering and provenance-aware candidates exist. Live graph status passed but ingestion watermark and last complete scan were null.
+  Sources: `memory-runtime/mem0_graph.py:145` (source inspected; private or installed snapshot); `memory-runtime/mem0-mcp-server-v2:700` (source inspected; private or installed snapshot).
+- **Omnara: 0/5; not found; source evidence.** No built-in temporal entity/relation graph or provenance-qualified shared recall found. An event timeline is a different capability.
+  Sources: [omnara/internal/agentconfig/source_schema.go:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/agentconfig/source_schema.go#L1); [omnara/docs/concepts.mdx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/concepts.mdx#L1).
+
+**Opus 5.5 (Max requested) — criticality 3/5**
+
+- **My Systems: 3/5; present; source evidence.** Graphiti on FalkorDB, partitioned per scope with collision-checked keys and bitemporal edges. Every row is stamped derived_unverified. At recall time a graph fact is shown only while its bound source rows still exist unchanged, live and unretired. Limits: it is opt-in; local extraction is slow (420 s per episode); no FalkorDB backup was found; the installed adapter reads through the write-capable graph.query, while the public copy uses ro_query.
+  Sources: `memory-runtime/mem0_graph.py:32-44` (source inspected; private or installed snapshot); [borg/memory/bin/mem0_recall_fast.py:554-589](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/memory/bin/mem0_recall_fast.py#L554); [borg/graph/bin/graph-recall-projector:384-395](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/graph/bin/graph-recall-projector#L384); `memory-runtime/mem0_graph.py:868` (source inspected; private or installed snapshot); [borg/memory/bin/mem0_graph.py:761-763](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/memory/bin/mem0_graph.py#L761).
+- **Omnara: 0/5; not found; source evidence.** No graph store or recall tool found. There is a strong provenance substrate a recall layer could build on: an immutable, sequenced event log, and checkpoints that record the producing model call and the event frontier.
+  Sources: [omnara/migrations/000004_events_messages_turns.sql:74-89](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/migrations/000004_events_messages_turns.sql#L74); [omnara/migrations/000005_model_context_tools_policy.sql:526-564](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/migrations/000005_model_context_tools_policy.sql#L526).
+
+### C11: Capture, consolidation and retention
+
+**Codex / Astra Max — criticality 4/5**
+
+- **My Systems: 3/5; present; source evidence.** Hooks, bounded selection, guarded consolidation and retention plans are implemented. Semantic-preservation effectiveness was not measured here.
+  Sources: `memory-runtime/memory_selection.py:295` (source inspected; private or installed snapshot); `memory-runtime/retention.py:639` (source inspected; private or installed snapshot); `memory-runtime/mem0_dream_safety.py:1` (source inspected; private or installed snapshot).
+- **Omnara: 1/5; partial; source evidence.** Context compaction and artifact/event persistence exist. Shared semantic consolidation and memory lifecycle were not found.
+  Sources: [omnara/internal/compaction/planner.go:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/compaction/planner.go#L1); [omnara/docs/events/artifacts.mdx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/events/artifacts.mdx#L1).
+
+**Opus 5.5 (Max requested) — criticality 3/5**
+
+- **My Systems: 3/5; partial; source evidence.** The newest Codex/fleet capture path requires user or tool evidence references and checks that literals appear in that evidence. Retention is marker-based, journaled, capped and reversible; decay and vacuum never hard-delete without confirmation. But the paper's merge/contradiction consolidation is held in the public copy and off by default in the installed runtime, and the dream tests skip at import. MCP memory_delete is an immediate hard delete with no receipt, and deleted text persists in retired-log with no erasure path. The Plimsoll collector keeps raw rows 90 days and has purge commands.
+  Sources: `memory-runtime/mem0-codex-hook:1479-1510` (source inspected; private or installed snapshot); `memory-runtime/retention.py:1-60` (source inspected; private or installed snapshot); [borg/memory/bin/mem0ctl:84-88](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/memory/bin/mem0ctl#L84); `memory-runtime/mem0-mcp-server-v2:2617-2633` (source inspected; private or installed snapshot); [borg/memory/tests/test_dream_v2_wave1.py:25](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/memory/tests/test_dream_v2_wave1.py#L25); [plimsoll/packages/collector-cli/src/config.ts:67](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/packages/collector-cli/src/config.ts#L67).
+- **Omnara: 1/5; partial; source evidence.** Per-agent compaction is well tested (checkpoints, bounded progressive summaries). There is no cross-session capture and no forgetting. Triggers reject UPDATE and DELETE on events, content blocks, model outputs and tool results. Org and project deletion is a soft delete, while the docs say it 'removes everything'.
+  Sources: [omnara/internal/compaction/prompts.go:13-18](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/compaction/prompts.go#L13); [omnara/migrations/000006_processes_artifacts_usage.sql:195-209](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/migrations/000006_processes_artifacts_usage.sql#L195); [omnara/internal/storage/queries/identity.sql:22-28](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/storage/queries/identity.sql#L22); [omnara/docs/organization/members.mdx:50](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/organization/members.mdx#L50).
+
+### C12: Local inference and learned extraction
+
+**Codex / Astra Max — criticality 3/5**
+
+- **My Systems: 3/5; present; source evidence.** Pinned local extraction models and exam/canary training workflow. Included LoRA students remain benched or limited; no autonomous self-improvement claim is justified.
+  Sources: [borg/README.md:108](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/README.md#L108); [borg/training/eval/canary_promotion.py:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/training/eval/canary_promotion.py#L1); [borg/THIRD_PARTY_NOTICES.md:23](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/THIRD_PARTY_NOTICES.md#L23).
+- **Omnara: 1/5; partial; source evidence.** Can use compatible local model endpoints; no extraction-model training or promotion workflow found.
+  Sources: [omnara/docs/organization/model-providers.mdx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/organization/model-providers.mdx#L1); [omnara/internal/modelprovider/resolver.go:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/modelprovider/resolver.go#L1).
+
+**Opus 5.5 (Max requested) — criticality 2/5**
+
+- **My Systems: 3/5; present; source evidence.** Extraction and embeddings run fully locally on pinned Ollama models, with a grammar shim, opt-in LoRA training chains with crash resume, and an exam plus a promotion canary for each Graphiti call shape. The canary caught a 400/400 exam winner failing in the real pipeline. All three published adapters are benched and uncanaried. There is no automated promotion, the harness is MLX/Apple Silicon only, the scoring logic is untested, and none of it runs in CI.
+  Sources: [borg/graph/bin/ollama-schema-shim:1-34](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/graph/bin/ollama-schema-shim#L1); [borg/training/eval/canary_promotion.py:1-25](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/training/eval/canary_promotion.py#L1); [work/borg-public/adapters/MANIFEST.json:4](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/adapters/MANIFEST.json#L4); `memory-runtime/mem0_runtime_contract.py:12-34` (source inspected; private or installed snapshot).
+- **Omnara: 1/5; partial; source evidence.** Custom OpenAI/Anthropic-compatible endpoints are allowed. But base URLs must be HTTPS unless loopback, and the model network filter rejects private addresses in all modes and loopback outside insecure dev mode. A production self-host therefore cannot reach a LAN, tailnet or same-host Ollama, although the README names Ollama. No eval or training tooling found.
+  Sources: [omnara/internal/storage/modelstore/validation.go:246-251](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/storage/modelstore/validation.go#L246); [omnara/internal/ssrf/ssrf.go:11-32](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/ssrf/ssrf.go#L11); [omnara/cmd/worker/main.go:186-195](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/cmd/worker/main.go#L186); [omnara/README.md:63-66](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/README.md#L63).
+
+### C13: Operator dashboard and live timelines
+
+**Codex / Astra Max — criticality 4/5**
+
+- **My Systems: 2/5; partial; source evidence.** Several native consoles and a telemetry dashboard exist. A unified, independently installable execution/approval/cost console was not demonstrated.
+  Sources: `Private Cloud snapshot (implementation details withheld)` (source inspected; private implementation details withheld); [borg/docs/WEB.md:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/docs/WEB.md#L1).
+- **Omnara: 4/5; present; source evidence.** Integrated agent conversations, configuration builder, streamed events, approvals and usage views in the web application. Source-level UX audit only.
+  Sources: [omnara/frontend/apps/web/src/router.tsx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/frontend/apps/web/src/router.tsx#L1); [omnara/docs/events/interactions.mdx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/events/interactions.mdx#L1).
+
+**Opus 5.5 (Max requested) — criticality 4/5**
+
+- **My Systems: 2/5; partial; source evidence.** BORG ships only the vendored Inbox web console (coordination actions, 30 s polling) and conductor JSON endpoints. There is no agent-session view, steering UI or push stream. Plimsoll's local and Cloud dashboards are spend and outcome analytics with no agent interaction, and the Cloud manager view samples 1,000 events. The ecosystem's Estate Ops and Grafana are documented as read-only fleet views; not verified here.
+  Sources: [work/borg-public/coordination/comms/hub/web/js/app.js:13-14](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/coordination/comms/hub/web/js/app.js#L13); [work/borg-public/conductor/conductor.mjs:555-576](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/conductor.mjs#L555); `Private Cloud snapshot (implementation details withheld)` (source inspected; private implementation details withheld).
+- **Omnara: 4/5; present; source evidence.** Resumable SSE (sequence IDs, Last-Event-ID, 10 s heartbeat) and an auto-reconnecting SDK shared by the CLI and the React package. The web dashboard covers agents, the input queue, interactions, usage and resources, and there is a bidirectional Slack connector. Gaps: tool-call updates and deltas are not replayed; approvals are per agent only; Slack approvals bypass Omnara roles.
+  Sources: [omnara/internal/httpapi/agent_runtime_routes.go:627-662](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/httpapi/agent_runtime_routes.go#L627); [omnara/frontend/packages/sdk/src/agent-event-stream.ts:256](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/frontend/packages/sdk/src/agent-event-stream.ts#L256); [omnara/frontend/apps/web/src/router.tsx:73-203](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/frontend/apps/web/src/router.tsx#L73); [omnara/docs/events/streaming.mdx:87](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/events/streaming.mdx#L87).
+
+### C14: Organizations, projects and roles
+
+**Codex / Astra Max — criticality 4/5**
+
+- **My Systems: 3/5; partial; source evidence.** Memory scopes, Inbox principals/grants and cloud tenants protect distinct surfaces. They do not form one consistent org/project/operator/viewer product contract.
+  Sources: [borg/coordination/README.md:3](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/coordination/README.md#L3); `memory-runtime/mem0_scope_lib.py:1` (source inspected; private or installed snapshot); `Private Cloud snapshot (implementation details withheld)` (source inspected; private implementation details withheld).
+- **Omnara: 4/5; present; source evidence.** Explicit organization and project roles, resource grants and separately scoped API identities. Role matrix is implemented in authz.
+  Sources: [omnara/internal/authz/authz.go:9](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/authz/authz.go#L9); [omnara/docs/organization/members.mdx:14](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/organization/members.mdx#L14).
+
+**Opus 5.5 (Max requested) — criticality 3/5**
+
+- **My Systems: 2/5; partial; source evidence.** [Sharing note: private Cloud hardening details retained in the private original; rating unchanged.]
+  Sources: [borg/coordination/comms/hub/store.py:1901-2016](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/coordination/comms/hub/store.py#L1901); [borg/connector/borg_context_server.py:122-130](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/borg_context_server.py#L122); `Private Cloud snapshot (implementation details withheld)` (source inspected; private implementation details withheld); `Private Cloud snapshot (implementation details withheld)` (source inspected; private implementation details withheld); `Private Cloud snapshot (implementation details withheld)` (source inspected; private implementation details withheld).
+- **Omnara: 4/5; present; source evidence.** Every OpenAPI operation must map to an authorization policy or the server refuses to start. Org and project roles are derived in SQL. Tokens are typed and hashed, passwords use Argon2id, OIDC/GitHub login is supported, and secrets, machines, pools, models and skills are shared by grant. Personal tokens and org keys have no scopes or expiry; there are no custom roles, SAML, SCIM or admin audit log.
+  Sources: [omnara/internal/httpapi/openapi_policies.go:420-457](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/httpapi/openapi_policies.go#L420); [omnara/internal/authz/authz.go:9-64](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/authz/authz.go#L9); [omnara/migrations/000001_identity.sql:541-558](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/migrations/000001_identity.sql#L541); [omnara/internal/authn/password.go:17-28](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/authn/password.go#L17).
+
+### C15: Approvals and credential boundaries
+
+**Codex / Astra Max — criticality 5/5**
+
+- **My Systems: 3/5; present; source evidence.** Owner authentication, scope gates, value-blind credential handles and native holds. Broad native shell access remains a trusted-owner boundary, not a sandbox.
+  Sources: [borg/connector/service_handles.py:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/service_handles.py#L1); [borg/connector/borg_context_server.py:192](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/borg_context_server.py#L192).
+- **Omnara: 4/5; present; source evidence.** Tool allow/ask/deny, canonical authorized arguments, first-writer-wins interactions and secret references. Built-in/custom tools default allow; integration messaging only supports allow.
+  Sources: [omnara/internal/toolpermission/interaction.go:50](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/toolpermission/interaction.go#L50); [omnara/docs/tools/permissions.mdx:12](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/tools/permissions.mdx#L12); [omnara/docs/events/interactions.mdx:90](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/events/interactions.mdx#L90).
+
+**Opus 5.5 (Max requested) — criticality 4/5**
+
+- **My Systems: 2/5; partial; source evidence.** Secrets handling is strong: tool arguments and results are scanned for secret shapes (including the install's own tokens), credential handles are value-blind, and private files must be 0600, single-link and symlink-free. Permission scoping is absent. The conductor starts Codex with danger-full-access and approvalPolicy never, and Grok runs --always-approve. The connector is one owner_all principal, and the Cloudflare gateway gives web ChatGPT that full tool set, reaching every enrolled host through fleet_call. The conductor HTTP API has no authentication and exposes a raw /rpc passthrough on loopback. James's doctrine rejects approval gates; the gap that matters is who can reach the control plane.
+  Sources: [borg/connector/computer_tools.py:55-65](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/computer_tools.py#L55); [borg/connector/service_handles.py:1-100](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/service_handles.py#L1); [work/borg-public/conductor/conductor.mjs:87-98](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/conductor.mjs#L87); [work/borg-public/conductor/conductor.mjs:577-580](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/conductor.mjs#L577); [work/borg-public/conductor/providers/grok-conductor.mjs:375](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/providers/grok-conductor.mjs#L375); [borg/connector/cloudflare_gateway.py:106-156](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/cloudflare_gateway.py#L106).
+- **Omnara: 3/5; present; source evidence.** Per-tool allow/ask/deny, with approvals bound to the exact canonical input and a DB-enforced interaction state machine. Secrets use AES-256-GCM envelope encryption; egress passes a network filter; logs are scrubbed. Defaults are permissive: built-in tools including run_command are always_allow. Resolving an approval needs the same permission as sending input. Slack approvals check only the Slack signature and target, with no Omnara role. Secrets injected as environment variables are readable by run_command and persist in immutable tool output. Only a local key wrapper exists, and insecure dev mode uses a fixed, public encryption key.
+  Sources: [omnara/internal/toolcatalog/catalog.go:357](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/toolcatalog/catalog.go#L357); [omnara/internal/harness/tools/approvals.go:185-187](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/harness/tools/approvals.go#L185); [omnara/internal/httpapi/openapi_policies.go:384](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/httpapi/openapi_policies.go#L384); [omnara/internal/httpapi/integration_action_routes.go:26-70](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/httpapi/integration_action_routes.go#L26); [omnara/internal/secrets/secrets.go:44-53](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/secrets/secrets.go#L44); [omnara/internal/config/config.go:334-338](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/config/config.go#L334).
+
+### C16: Schedules, events and notifications
+
+**Codex / Astra Max — criticality 3/5**
+
+- **My Systems: 3/5; present; source evidence.** Native hooks, scheduled memory jobs and platform automation exist across separate components. Cross-provider delivery is not one portable contract.
+  Sources: [borg/memory/bin/mem0-fleet-hook:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/memory/bin/mem0-fleet-hook#L1); [borg/README.md:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/README.md#L1).
+- **Omnara: 4/5; present; source evidence.** Cron triggers, event streams, webhooks and first-party Slack integration have dedicated implementation and tests.
+  Sources: [omnara/internal/crontrigger/service.go:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/crontrigger/service.go#L1); [omnara/internal/eventwebhook/sender.go:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/eventwebhook/sender.go#L1); [omnara/internal/integration/service.go:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/integration/service.go#L1).
+
+**Opus 5.5 (Max requested) — criticality 3/5**
+
+- **My Systems: 3/5; present; source evidence.** Hooks are central to our stack. Codex lifecycle hooks are installed through Codex's config API with compare-and-set and readback. Memory has recall and capture hooks for Codex, Claude and Grok, and Plimsoll wires hooks and OTLP for telemetry. Services run under launchd/systemd with a budgeted watchdog. Live in this session: the Inbox and Jev hooks injected identity, checkpoint health and the policy hash at session start and on tool use. Gaps: no scheduler in BORG source, notifications are local files, and there is no push or email.
+  Sources: [borg/installer/clients.py:112-170](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/installer/clients.py#L112); [borg/connector/connection_watchdog.py:256-318](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/connection_watchdog.py#L256); [borg/memory/bin/mem0-claude-hook:1-30](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/memory/bin/mem0-claude-hook#L1); [plimsoll/packages/collector-config/src/templates.ts:85-92](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/packages/collector-config/src/templates.ts#L85); [borg/docs/COMPONENTS.md:138](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/docs/COMPONENTS.md#L138).
+- **Omnara: 3/5; present; source evidence.** Idempotent cron triggers (keyed by trigger ID and due time) and Standard-Webhooks event webhooks from a DB outbox, with optional signing and a 10-minute delivery window, plus bidirectional Slack. Gaps: cron is undocumented, webhooks drop after 10 minutes, email covers auth only, and there are no push notifications.
+  Sources: [omnara/internal/crontrigger/service.go:226-229](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/crontrigger/service.go#L226); [omnara/internal/eventwebhook/sender.go:183-223](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/eventwebhook/sender.go#L183); [omnara/internal/storage/executionstore/event_webhooks_store.go:20](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/storage/executionstore/event_webhooks_store.go#L20); [omnara/internal/email/email.go:47-63](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/email/email.go#L47).
+
+### C17: Capacity admission and work ownership
+
+**Codex / Astra Max — criticality 5/5**
+
+- **My Systems: 3/5; partial; source evidence.** Physical-resource measurements and native work claims are present. This run observed complete raw fleet measurements but failed aggregate fleet-context coverage and controller version drift.
+  Sources: [borg/conductor/README.md:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/README.md#L1); [borg/coordination/README.md:3](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/coordination/README.md#L3).
+- **Omnara: 2/5; partial; source evidence.** Pool CPU/memory and machine-count caps, grants and runtime locks. No equivalent measured seven-host workload placement and independent work-ownership authority found.
+  Sources: [omnara/docs/machines/pools.mdx:70](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/machines/pools.mdx#L70); [omnara/internal/harness/worker/worker.go:35](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/harness/worker/worker.go#L35).
+
+**Opus 5.5 (Max requested) — criticality 5/5**
+
+- **My Systems: 3/5; present; source evidence.** The design is ahead of Omnara's. Router admission fails closed on unknown, stale, unreachable, hot or memory-saturated capacity and on unknown claims. Workspace conflicts are judged by realpath plus device/inode ancestry. The connector has resource-scoped locks with 64-in-flight/256-queued admission. Live: this host's seat gate admitted this run's subagents on measured load per core, memory, pressure, open files and disk. But the shipped router never writes terminal receipt states, so a dispatched workspace stays claimed until the JSON is hand-edited. No remote capacity collectors ship, and remote_tools uses a fixed 1.5 load/core test with no memory check.
+  Sources: [work/borg-public/conductor/router/router.mjs:54-92](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/router/router.mjs#L54); [work/borg-public/conductor/router/router.mjs:547-564](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/router/router.mjs#L547); [borg/connector/concurrency.py:124-145](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/concurrency.py#L124); [work/borg-public/conductor/router/router.mjs:145](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/router/router.mjs#L145); [borg/connector/remote_tools.py:56-79](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/remote_tools.py#L56).
+- **Omnara: 2/5; partial; source evidence.** Work ownership is excellent: one leased lock per agent, SKIP LOCKED claims, and a pool machine attached to one agent at a time. Admission is static: 4 turns per worker by default, declared pool CPU/memory quotas and object-count limits. There is no measured host load, no admission for your own machines, and no tenant fairness (global FIFO). The per-org managed-work kill switch has no writer in the repository.
+  Sources: [omnara/internal/storage/queries/agent_inputs.sql:56-88](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/storage/queries/agent_inputs.sql#L56); [omnara/internal/config/config.go:214](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/config/config.go#L214); [omnara/internal/storage/executionstore/machine_pool_caps.go:157-252](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/storage/executionstore/machine_pool_caps.go#L157); [omnara/migrations/000012_provider_runtime_reconciliation.sql:5-9](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/migrations/000012_provider_runtime_reconciliation.sql#L5).
+
+### C18: Subscription and account continuity
+
+**Codex / Astra Max — criticality 4/5**
+
+- **My Systems: 3/5; partial; source evidence.** Provider-specific account/allowance routing and recovery machinery. It remains separate from machine capacity, and this audit exposed compatibility friction before useful Grok work.
+  Sources: [borg/conductor/README.md:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/README.md#L1); [borg/docs/PAPER-3-conductors.md:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/docs/PAPER-3-conductors.md#L1).
+- **Omnara: 1/5; partial; source evidence.** Provider configuration and bounded model retries exist; a subscription-seat allowance rotation and original-native-task recovery system was not found.
+  Sources: [omnara/internal/modelretry/policy.go:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/modelretry/policy.go#L1); [omnara/docs/organization/model-providers.mdx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/organization/model-providers.mdx#L1).
+
+**Opus 5.5 (Max requested) — criticality 5/5**
+
+- **My Systems: 3/5; partial; source evidence.** The router pins each Codex lane to an account digest and reads native rate-limit windows with freshness checks. It ranks lanes by remaining allowance, breaking ties by reset time, and separates exhaustion from spend-control. It falls back only before native start and never retries an uncertain start on another account. Limits: it acts at admission time only, covers Codex only, and ships an empty model-to-bucket map. Plimsoll's allowance adapters are unwired, and its doctrine forbids using them for routing. Ecosystem manager recovery and retarget is documented with receipts but not verified here.
+  Sources: [work/borg-public/conductor/router/router.mjs:29-42](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/router/router.mjs#L29); [work/borg-public/conductor/router/router.mjs:94-102](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/router/router.mjs#L94); [work/borg-public/conductor/router/router.mjs:274-329](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/router/router.mjs#L274); [plimsoll/packages/collector-cli/src/provider-capacity-adapters.ts:33-38](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/packages/collector-cli/src/provider-capacity-adapters.ts#L33).
+- **Omnara: 1/5; partial; source evidence.** Retries the same provider up to 8 times, honouring Retry-After, and passes an OpenRouter model list through. Billing and quota errors are terminal. Hosted credits are enforced by an external kill switch. No allowance tracking, account pools, reset awareness or use of subscription seats.
+  Sources: [omnara/internal/modelretry/policy.go:49-122](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/modelretry/policy.go#L49); [omnara/internal/model/providererrors/classify.go:123-126](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/model/providererrors/classify.go#L123); [omnara/internal/model/openaichatcompletions/media.go:64-78](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/model/openaichatcompletions/media.go#L64).
+
+### C19: Token and cost observability
+
+**Codex / Astra Max — criticality 5/5**
+
+- **My Systems: 4/5; present; source evidence.** Local metadata ledger, provider-specific telemetry, source-qualified token dimensions and reported/estimated/unknown costs. Native status command timed out; no current full-coverage claim.
+  Sources: [plimsoll/packages/shared/src/economics/contracts.ts:10](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/packages/shared/src/economics/contracts.ts#L10); [plimsoll/packages/shared/src/economics/service.ts:86](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/packages/shared/src/economics/service.ts#L86); [plimsoll/README.md:1](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/README.md#L1).
+- **Omnara: 4/5; present; source evidence.** Model-usage storage, provider-reported costs and project/org/profile views. Includes coverage counts; not equivalent to provider invoice reconciliation.
+  Sources: [omnara/internal/storage/executionstore/model_usage.go:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/storage/executionstore/model_usage.go#L1); [omnara/internal/storage/executionstore/model_usage_store.go:165](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/storage/executionstore/model_usage_store.go#L165); [omnara/frontend/apps/web/src/routes/ProjectUsagePage.tsx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/frontend/apps/web/src/routes/ProjectUsagePage.tsx#L1).
+
+**Opus 5.5 (Max requested) — criticality 4/5**
+
+- **My Systems: 3/5; present; source evidence.** Plimsoll captures Claude Code and Codex hooks, OTLP and history rollouts across every configured seat and profile. It records cost provenance (reported, estimated or unknown), deduplicates live capture against file tailers, and never shows unpriced usage as $0. Limits: the 15-model price table is hand-maintained with a prefix fallback and has no Gemini, Grok or gpt-5.6+ prices. Grok token capture is unproven, the bill-reconciliation gate is red, and it is macOS only. BORG records allowance percentage only.
+  Sources: [plimsoll/packages/shared/src/pricing.ts:22-66](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/packages/shared/src/pricing.ts#L22); [plimsoll/packages/collector-cli/src/otlp.ts:297-313](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/packages/collector-cli/src/otlp.ts#L297); [plimsoll/packages/collector-cli/src/dashboard-projection.ts:41-54](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/packages/collector-cli/src/dashboard-projection.ts#L41); [plimsoll/PRODUCT_GATE.md:23](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/PRODUCT_GATE.md#L23).
+- **Omnara: 3/5; present; source evidence.** Per-call token breakdown with DB invariants and exact provider-reported cost; a usage API at org, project, profile and agent scope; the UI flags calls that reported no cost. Only its own agents are covered, and there are no budgets, alerts, price-based estimates or token metrics.
+  Sources: [omnara/migrations/000005_model_context_tools_policy.sql:26-67](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/migrations/000005_model_context_tools_policy.sql#L26); [omnara/migrations/000013_model_call_provider_cost.sql:3-27](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/migrations/000013_model_call_provider_cost.sql#L3); [omnara/internal/httpapi/usage_routes.go:14-150](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/httpapi/usage_routes.go#L14).
+
+### C20: Shipped outcomes and value evidence
+
+**Codex / Astra Max — criticality 5/5**
+
+- **My Systems: 3/5; partial; source evidence.** GitHub linkage, immutable outcomes, first-pass yield and cost/acceptance contracts exist. Complete economic attribution and causal ROI are not established by source or telemetry.
+  Sources: [plimsoll/packages/shared/src/metric-registry.ts:287](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/packages/shared/src/metric-registry.ts#L287); [plimsoll/packages/shared/src/economics/service.ts:263](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/packages/shared/src/economics/service.ts#L263); [plimsoll/docs/learning-metric-truth.md:1](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/docs/learning-metric-truth.md#L1).
+- **Omnara: 1/5; partial; source evidence.** Queryable execution and usage can feed analytics; no built-in PR/check/mature-acceptance or cost-per-validated-outcome join found.
+  Sources: [omnara/internal/storage/executionstore/model_usage_store.go:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/storage/executionstore/model_usage_store.go#L1); [omnara/docs/self-hosting/architecture.mdx:51](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/self-hosting/architecture.mdx#L51).
+
+**Opus 5.5 (Max requested) — criticality 4/5**
+
+- **My Systems: 2/5; partial; source evidence.** Plimsoll joins sessions to pull requests through linkage keys and allocates tokens with conservation checks. It computes Validated Delivery Yield, keeps an immutable outcome timeline and marks unproven results UNKNOWN. The Cloud records human acceptance attestations. But the project's own audit found only 13 of 2,423 sessions linked and judged fleet cost per merged PR not publishable. Linkage is GitHub-only and run by hand per repo. BORG routes report completionVerified:false, and the Inbox reports work_acceptance:not_asserted. [Editorial date: this linkage figure comes from 20 August 2026; current coverage was not verified.]
+  Sources: [plimsoll/packages/shared/src/linkage.ts:3-54](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/packages/shared/src/linkage.ts#L3); [plimsoll/scripts/event-allocation.ts:75-92](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/scripts/event-allocation.ts#L75); [plimsoll/docs/agent-economics-join-audit-2026-08-20.md:31-34](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/docs/agent-economics-join-audit-2026-08-20.md#L31); [work/borg-public/conductor/router/router.mjs:587-589](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/router/router.mjs#L587).
+- **Omnara: 0/5; not found; source evidence.** No linkage of runs to commits, pull requests, deploys or business outcomes, and no value metric. Only tool-call outcomes and agent activity states exist. The search covered pull request, commit, outcome, kpi, roi, deliverable and acceptance over internal and migrations.
+  Sources: [omnara/internal/httpapi/agent_tool_call_routes.go:110-116](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/httpapi/agent_tool_call_routes.go#L110); [omnara/migrations/000002_agents.sql:298-316](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/migrations/000002_agents.sql#L298).
+
+### C21: Privacy and selective collection
+
+**Codex / Astra Max — criticality 5/5**
+
+- **My Systems: 4/5; present; source evidence.** Metadata suppression before persistence, hashed identity, scoped recall and future-only enrollment contracts. This is metadata minimization, not universal zero-sensitive-data certification.
+  Sources: [plimsoll/packages/shared/src/policy.ts:207](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/packages/shared/src/policy.ts#L207); [plimsoll/docs/privacy-spec.md:266](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/docs/privacy-spec.md#L266); `memory-runtime/mem0_scope_lib.py:1` (source inspected; private or installed snapshot).
+- **Omnara: 2/5; partial; source evidence.** Access control and secret boundaries exist, while event/tool content is retained for execution and analytics. No comparable metadata-only telemetry collection mode found.
+  Sources: [omnara/docs/self-hosting/architecture.mdx:51](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/self-hosting/architecture.mdx#L51); [omnara/internal/secrets/secrets.go:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/secrets/secrets.go#L1).
+
+**Opus 5.5 (Max requested) — criticality 3/5**
+
+- **My Systems: 3/5; partial; source evidence.** Plimsoll's collector suppresses raw content before anything is stored, with allowlist-first admission, and locks managed installs to metadata-only. Its privacy spec is generated from code. But protected identifiers are unsalted SHA-256 truncated to 16 hex characters, so a dictionary reverses them, and a project issue records doing exactly that. Memory is weaker. The older Claude/Grok capture hook stores first, deletes matches afterwards and logs the dropped text. The public identifier floor fails open when its config is missing; the installed runtime fails closed. There is no at-rest encryption and no erasure.
+  Sources: [plimsoll/packages/shared/src/policy.ts:96-127](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/packages/shared/src/policy.ts#L96); [plimsoll/docs/architecture/0004-managed-metadata-only-privacy.md:13-27](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/docs/architecture/0004-managed-metadata-only-privacy.md#L13); [borg/memory/bin/mem0-capture-hook:286-295](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/memory/bin/mem0-capture-hook#L286); [borg/memory/bin/mem0_scope_lib.py:203-212](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/memory/bin/mem0_scope_lib.py#L203); `memory-runtime/mem0_scope_lib.py:195-200` (source inspected; private or installed snapshot).
+- **Omnara: 1/5; partial; source evidence.** Logs are scrubbed, OpenAI requests use store:false, and no product telemetry was found. But all inputs, outputs, reasoning and tool results are stored as plaintext content blocks that cannot be updated or deleted. End-user actors cannot be deleted. Without an Exa key, web_search sends queries to Exa's keyless public endpoint.
+  Sources: [omnara/internal/log/scrub.go:9-39](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/log/scrub.go#L9); [omnara/internal/model/openairesponses/request.go:45](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/model/openairesponses/request.go#L45); [omnara/migrations/000006_processes_artifacts_usage.sql:152-209](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/migrations/000006_processes_artifacts_usage.sql#L152); [omnara/internal/webaccess/exa.go:39-54](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/webaccess/exa.go#L39).
+
+### C22: Receipts, idempotency and acceptance
+
+**Codex / Astra Max — criticality 5/5**
+
+- **My Systems: 4/5; present; source evidence.** Durable operation receipts and acceptance/evidence contracts; callers must inspect uncertain outcomes before retry. Forty-one focused connector tests passed; not a whole-stack guarantee.
+  Sources: [borg/connector/operation_receipts.py:34](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/operation_receipts.py#L34); [borg/connector/README.md:19](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/README.md#L19); [plimsoll/packages/shared/src/economics/contracts.ts:66](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/packages/shared/src/economics/contracts.ts#L66).
+- **Omnara: 4/5; present; source evidence.** Transactional state, idempotent input/interaction resolution and explicit ambiguous recovery states. External side-effect semantics still require an adapter contract.
+  Sources: [omnara/internal/storage/executionstore/agent_runtime_recovery_store.go:57](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/storage/executionstore/agent_runtime_recovery_store.go#L57); [omnara/docs/events/interactions.mdx:90](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/events/interactions.mdx#L90).
+
+**Opus 5.5 (Max requested) — criticality 5/5**
+
+- **My Systems: 3/5; present; source evidence.** Broad but uneven. What works:
+- Inbox request_id receipts commit in the same transaction, with parameter-hash conflict detection.
+- Router intents are duplicate-safe.
+- Memory verified findings use deterministic IDs, locks, read-back and RETRYABLE_UNKNOWN.
+- The Plimsoll outbox has verified per-item acknowledgements, dead letters and replay.
+- Non-claims are honest (completionVerified false).
+Gaps:
+- Connector receipts are not idempotency keys, so a retry can execute twice.
+- The launch bus has no dedup.
+- Router receipts never reach a terminal state.
+- memory_add has no key, and the public release replays adds on any exception.
+- memory_delete is unaudited.
+- Plimsoll receipts are digests, not signatures.
+- The Cloud acceptance journal has a [private session] escape hatch.
+  Sources: [borg/coordination/comms/hub/store.py:2574-2626](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/coordination/comms/hub/store.py#L2574); [work/borg-public/conductor/router/router.mjs:487-513](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/router/router.mjs#L487); `memory-runtime/mem0-mcp-server-v2:1187-1264` (source inspected; private or installed snapshot); [plimsoll/docs/architecture/delivery-ack-v1.md:5-30](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/docs/architecture/delivery-ack-v1.md#L5); [borg/connector/operation_receipts.py:86-102](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/operation_receipts.py#L86); [borg/memory/bin/mem0-mcp-server-v2:1897-1900](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/memory/bin/mem0-mcp-server-v2#L1897).
+- **Omnara: 3/5; partial; source evidence.** DB-enforced idempotency on execution paths (events, inputs, agents, artifacts), comparing intent on replay. Deterministic system keys for cancel, spawn and cron. An immutable ledger, sha256 artifact digests and recorded ambiguous outcomes. Gaps: no admin audit log; Idempotency-Key is accepted on only 11 of 86 mutating public operations (counted by this auditor); no concept of acceptance evidence.
+  Sources: [omnara/migrations/000004_events_messages_turns.sql:55-58](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/migrations/000004_events_messages_turns.sql#L55); [omnara/internal/storage/executionstore/kernel_event_authority_store.go:166-200](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/storage/executionstore/kernel_event_authority_store.go#L166); [omnara/api/openapi/openapi.yaml:308](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/api/openapi/openapi.yaml#L308); [omnara/internal/blobstore/blobstore.go:23-27](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/blobstore/blobstore.go#L23).
+
+### C23: Self-hosting and installation
+
+**Codex / Astra Max — criticality 4/5**
+
+- **My Systems: 3/5; partial; source evidence.** Independent owner installer and local-first collector. Apple Silicon is the verified installer target; Linux/Intel full acceptance and Plimsoll paid-cloud launch remain qualified.
+  Sources: [borg/README.md:94](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/README.md#L94); [borg/README.md:119](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/README.md#L119); `Private Cloud snapshot (implementation details withheld)` (source inspected; private implementation details withheld).
+- **Omnara: 4/5; present; source evidence.** Documented Compose control plane and BYO daemon; operational dependencies include Postgres, Redis and blob storage. Fresh installation not tested in this audit.
+  Sources: [omnara/compose.yaml:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/compose.yaml#L1); [omnara/docs/self-hosting/architecture.mdx:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/self-hosting/architecture.mdx#L1).
+
+**Opus 5.5 (Max requested) — criticality 3/5**
+
+- **My Systems: 3/5; partial; source evidence.** The auditor found partial identity/privacy boundaries and material hardening work in the private Cloud snapshot, plus limitations in the public components cited below. The exact private implementation details are withheld from this shareable copy; the original finding and unchanged rating are in the private archive.
+  Sources: [borg/install.sh:103-181](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/install.sh#L103); [borg/installer/health.py:89-266](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/installer/health.py#L89); [borg/docs/INSTALL.md:114-121](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/docs/INSTALL.md#L114); `Private Cloud snapshot (implementation details withheld)` (source inspected; private implementation details withheld); [plimsoll/packages/collector-cli/package.json:3](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/packages/collector-cli/package.json#L3).
+- **Omnara: 3/5; present; source evidence.** Digest-pinned, distroless, multi-arch images with SLSA provenance, an SBOM and cosign signing. Production config fails closed. Forward-only migrations have CI compatibility checks, and the daemon runs on macOS and Linux. But the compose defaults enable insecure dev mode: a fixed public encryption key, open signup, fixed database credentials, and Redis and Postgres published on all interfaces. The documented public-exposure recipe keeps those defaults. There is no backup, restore or down-migration guidance, and the self-hosting pages are missing from the docs navigation.
+  Sources: [omnara/Dockerfile:1-75](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/Dockerfile#L1); [omnara/compose.yaml:1-8](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/compose.yaml#L1); [omnara/compose.yaml:18-40](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/compose.yaml#L18); [omnara/internal/config/config.go:334-338](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/config/config.go#L334); [omnara/docs/self-hosting/deployment.mdx:58-62](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/self-hosting/deployment.mdx#L58).
+
+### C24: API, SDK and contributor experience
+
+**Codex / Astra Max — criticality 3/5**
+
+- **My Systems: 3/5; present; source evidence.** Public source, native CLI/MCP, installer guides and component licenses. Multiple repositories and runtime/source drift create integration work for adopters.
+  Sources: [borg/docs/COMPONENTS.md:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/docs/COMPONENTS.md#L1); [borg/connector/README.md:1](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/connector/README.md#L1); [plimsoll/README.md:1](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/README.md#L1).
+- **Omnara: 4/5; present; source evidence.** OpenAPI, generated TypeScript client/CLI, examples and contribution gates create a more unified developer entry point. Production support quality not measured.
+  Sources: [omnara/api/openapi/openapi.yaml:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/api/openapi/openapi.yaml#L1); [omnara/CONTRIBUTING.md:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/CONTRIBUTING.md#L1); [omnara/CONTRIBUTING.md:1](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/CONTRIBUTING.md#L1).
+
+**Opus 5.5 (Max requested) — criticality 2/5**
+
+- **My Systems: 2/5; partial; source evidence.** Candid, extensive docs and papers; MIT and Apache licences; a versioned MCP manifest; 116 Plimsoll proof scripts. But there is no SDK or API spec for the conductor or Inbox HTTP APIs, and BORG has no CONTRIBUTING or SECURITY file. BORG CI runs 22 of about 301 Python tests (installer guards only) plus the conductor Node tests; memory, graph and training tests never run in CI. Plimsoll's docs have drifted: check counts disagree and the changelog stops at 0.7.5.
+  Sources: [work/borg-public/.github/workflows/verify.yml:37-48](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/.github/workflows/verify.yml#L37); [borg/docs/COMPONENTS.md:18](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/docs/COMPONENTS.md#L18); [plimsoll/CHANGELOG.md:3](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/CHANGELOG.md#L3); [plimsoll/README.md:522](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/README.md#L522).
+- **Omnara: 4/5; present; source evidence.** An OpenAPI spec with 149 operations kept in sync by CI; a generated TypeScript SDK, CLI and React package; and the API as MCP. There are 576 Go test files with 3,620 test functions (counted, not executed). CI covers race, integration, e2e, Playwright and live provider tests (documented in the workflows). SECURITY and CONTRIBUTING are present. It is pre-stable (security fixes land on main only) and has small doc gaps.
+  Sources: [omnara/api/openapi/openapi.yaml](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/api/openapi/openapi.yaml); [work/omnara-public/.github/workflows/ci.yaml:1-233](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/.github/workflows/ci.yaml#L1); [omnara/SECURITY.md:5-7](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/SECURITY.md#L5); [omnara/CONTRIBUTING.md:1-41](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/CONTRIBUTING.md#L1).
+
+### C25: subscription-seat CLI agents as execution engines (added row; overlaps C01 and C18, not aggregated)
+
+**Opus 5.5 (Max requested) — criticality 5/5**
+
+- **My Systems: 3/5; present; source evidence.** The stack is built around vendor CLI agents as engines: Codex app-server lanes, one per account profile; Claude Code seats (this run is one); and Grok CLI sessions. That keeps vendor-native tools, sub-agents and subscription allowances. Depth is uneven: Codex is deep, BORG core's Claude path is launch-only, and Grok is gated.
+  Sources: [work/borg-public/conductor/config.mjs:161-178](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/config.mjs#L161); [work/borg-public/conductor/providers/launch-bus.mjs:21-53](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/conductor/providers/launch-bus.mjs#L21); `BRIEF.md (this delegated run)` (reviewer pointer; not resolved in lead packet).
+- **Omnara: 0/5; not found; source evidence.** Omnara runs its own harness against model APIs. No adapter to drive Codex app-server, Claude Code or the Grok CLI as agent engines was found; the search for chatgpt, codex, claude code and subscription over internal, cmd and docs found only model-name pricing and MCP client docs. Those CLIs can drive Omnara through its MCP server, and an Omnara agent could shell out to a CLI via run_command, but neither is an engine integration.
+  Sources: [omnara/internal/model/image_tokens.go:176-178](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/internal/model/image_tokens.go#L176); [omnara/docs/changelog.mdx:94-107](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/docs/changelog.mdx#L94).
+
+### C26: release integrity and cross-component contract consistency (added row)
+
+**Opus 5.5 (Max requested) — criticality 4/5**
+
+- **My Systems: 2/5; partial; source evidence.** Installed and public memory copies diverge in both directions; privacy and replay fixes differ, as do identity schema strings. The reviewer also found collector/Cloud contract drift. BORG’s release guard and hashed inventory are a strong counter-example. Private Cloud details are retained in the private original.
+  Sources: `memory-runtime/mem0_capture_identity.py:19` (source inspected; private or installed snapshot); `memory-runtime/mem0-mcp-server-v2:2180-2185` (source inspected; private or installed snapshot); [borg/memory/bin/mem0-mcp-server-v2:1897-1900](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/memory/bin/mem0-mcp-server-v2#L1897); `Private Cloud snapshot (implementation details withheld)` (source inspected; private implementation details withheld); [plimsoll/docs/architecture/delivery-ack-v1.md:127](https://github.com/CryptoJym/plimsoll/blob/480524f54286b106d978abf969455123aac1520f/docs/architecture/delivery-ack-v1.md#L127); [borg/RELEASE-INVENTORY.json](https://github.com/h3ro-dev/borg/blob/57ae994cfbe1cd4c1a88021b5df183cb71970c44/RELEASE-INVENTORY.json).
+- **Omnara: 4/5; present; source evidence.** A single repository generates its SDK from one OpenAPI source. CI enforces API compatibility and protects released migrations, and release artifacts are signed. No installed-versus-published split was observed within the inspected scope. Omnara Cloud's private services were not assessed.
+  Sources: [omnara/Makefile:215-216](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/Makefile#L215); [omnara/Makefile:514-525](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/Makefile#L514); [work/omnara-public/.github/workflows/ci.yaml:49-57](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/.github/workflows/ci.yaml#L49); [work/omnara-public/.github/workflows/cluster-release.yaml:49-97](https://github.com/omnara-ai/omnara/blob/9f9ef08158c75d28d4d85dfb82f544e291a578c3/.github/workflows/cluster-release.yaml#L49).
+
+## Individual audits
+
+The companion files preserve each auditor’s own prose. Machine-specific paths, account details and private Cloud implementation details are removed or generalized in shared copies; the original individual reports are retained in the private archive; judgments and ratings are not averaged or silently rewritten.
+
+- [Codex / Astra Max](codex-audit.md)
+- [Opus 5.5 (Max requested)](opus-audit.md)

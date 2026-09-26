@@ -1,0 +1,916 @@
+{
+  "auditor": "Codex lead",
+  "model": "gpt-6-astra (Max; native turn context verified)",
+  "rows": [
+    {
+      "id": "C01",
+      "name": "Models and provider interoperability",
+      "criticality": 5,
+      "ours": {
+        "status": "present",
+        "score": 3,
+        "evidence_tier": "source",
+        "components": [
+          "BORG",
+          "Ecosystem"
+        ],
+        "finding": "Native provider tools and conductors plus cross-runtime hooks. This is several integrations, not one provider-neutral execution engine. A Grok model-label mismatch was observed in the fleet controller.",
+        "sources": [
+          "borg/README.md:14",
+          "borg/conductor/README.md:1"
+        ]
+      },
+      "omnara": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Provider-neutral configuration supports Responses, Chat Completions and Anthropic Messages. Production egress rejects loopback, LAN and tailnet addresses; local-model compatibility requires an appropriately reachable endpoint, not merely a compatible API.",
+        "sources": [
+          "omnara/internal/model/provider_route.go:1",
+          "omnara/docs/organization/model-providers.mdx:1",
+          "omnara/internal/ssrf/ssrf.go:11",
+          "omnara/cmd/worker/main.go:193"
+        ]
+      }
+    },
+    {
+      "id": "C02",
+      "name": "Durable state and crash recovery",
+      "criticality": 5,
+      "ours": {
+        "status": "partial",
+        "score": 3,
+        "evidence_tier": "source",
+        "components": [
+          "BORG",
+          "Ecosystem"
+        ],
+        "finding": "Operation receipts, durable jobs and native conductor history exist. No single transaction spans model state, the memory layer, fleet ownership and external side effects.",
+        "sources": [
+          "borg/connector/operation_receipts.py:34",
+          "borg/connector/job_tools.py:62",
+          "borg/connector/README.md:75"
+        ]
+      },
+      "omnara": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Postgres-backed execution state, runtime locks and explicit ambiguous model-call recovery. This does not guarantee exactly-once effects at an external tool.",
+        "sources": [
+          "omnara/internal/storage/executionstore/agent_runtime_recovery_store.go:23",
+          "omnara/internal/harness/worker/worker.go:240"
+        ]
+      }
+    },
+    {
+      "id": "C03",
+      "name": "Steer, cancel and continue work",
+      "criticality": 5,
+      "ours": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "BORG",
+          "Ecosystem"
+        ],
+        "finding": "Native conductor start, steer and interrupt; connector predecessor handoff retains resident handles. Portability across runtimes is uneven.",
+        "sources": [
+          "borg/conductor/README.md:1",
+          "borg/connector/process_handoff.py:1"
+        ]
+      },
+      "omnara": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Queued versus steering input, cancellation and retained conversation are first-class. Archive is terminal; it is not a reversible pause.",
+        "sources": [
+          "omnara/docs/events/sending-input.mdx:1",
+          "omnara/docs/agents/overview.mdx:83"
+        ]
+      }
+    },
+    {
+      "id": "C04",
+      "name": "Subagents and coordination",
+      "criticality": 5,
+      "ours": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "BORG",
+          "Ecosystem"
+        ],
+        "finding": "Native agents, leased Inbox messages, versioned assignments and Beads dependencies. Native delivery and actual work acceptance remain separate.",
+        "sources": [
+          "borg/coordination/README.md:3",
+          "borg/coordination/INTEGRATION.md:1"
+        ]
+      },
+      "omnara": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Configurable child-agent tools, parent IDs, messaging and timelines. Human interactions are separate from parent responses.",
+        "sources": [
+          "omnara/internal/harness/tools/subagent_tools.go:1",
+          "omnara/docs/tools/built-in.mdx:244"
+        ]
+      }
+    },
+    {
+      "id": "C05",
+      "name": "Own machines and multiple hosts",
+      "criticality": 5,
+      "ours": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "BORG",
+          "Ecosystem"
+        ],
+        "finding": "Explicit SSH enrollment, identity-pinned fleet tool discovery and host-local resources. The deployed connector and the seven-host orchestration estate are different scopes.",
+        "sources": [
+          "borg/connector/fleet_tools.py:1",
+          "borg/README.md:123"
+        ]
+      },
+      "omnara": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Outbound machine daemon and agents using several BYO or pooled machines. Runtime and persistent state are separated.",
+        "sources": [
+          "omnara/docs/machines/connect.mdx:1",
+          "omnara/docs/machines/connect.mdx:1"
+        ]
+      }
+    },
+    {
+      "id": "C06",
+      "name": "Disposable cloud sandboxes",
+      "criticality": 3,
+      "ours": {
+        "status": "not_found",
+        "score": 0,
+        "evidence_tier": "source",
+        "components": [
+          "BORG"
+        ],
+        "finding": "No first-class multi-provider sandbox pool lifecycle found in the inspected BORG distribution. Generic shell or SSH extensibility is not counted as the feature.",
+        "sources": [
+          "borg/docs/COMPONENTS.md:1",
+          "borg/connector/fleet_tools.py:1"
+        ]
+      },
+      "omnara": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Blaxel, Daytona, Modal and Unikraft provider implementations, pool/project limits, provisioning and cleanup. Remote-provider acceptance was not run.",
+        "sources": [
+          "omnara/internal/machinepool/manager.go:71",
+          "omnara/docs/machines/pools.mdx:1"
+        ]
+      }
+    },
+    {
+      "id": "C07",
+      "name": "Native desktop and browser tools",
+      "criticality": 4,
+      "ours": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "BORG"
+        ],
+        "finding": "Native macOS UI and browser tooling, session/resource locks and operating-system permission boundaries. A physical desktop still has one focus.",
+        "sources": [
+          "borg/connector/native_ui.py:1",
+          "borg/connector/native_browser.py:1",
+          "borg/connector/README.md:24"
+        ]
+      },
+      "omnara": {
+        "status": "not_found",
+        "score": 0,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "No built-in native desktop or browser interaction surface found in the inspected tool catalog and implementations. Web search/fetch and shell execution are different capabilities. External MCP/browser automation remains an integration path.",
+        "sources": [
+          "omnara/docs/tools/built-in.mdx:1",
+          "omnara/docs/tools/mcp.mdx:1"
+        ]
+      }
+    },
+    {
+      "id": "C08",
+      "name": "MCP, skills and custom tools",
+      "criticality": 5,
+      "ours": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "BORG",
+          "Ecosystem"
+        ],
+        "finding": "Authenticated MCP gateway, live capability discovery, native CLI and skill/catalog access. Source and runtime tool sets need reconciliation.",
+        "sources": [
+          "borg/connector/borg_context_server.py:1",
+          "borg/connector/capabilities.py:1"
+        ]
+      },
+      "omnara": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "HTTP MCP with OAuth/bearer/SigV4, deferred discovery, custom tools and versioned skill packages. Some permission defaults differ by tool type.",
+        "sources": [
+          "omnara/docs/tools/mcp.mdx:1",
+          "omnara/docs/tools/custom.mdx:1",
+          "omnara/docs/tools/skills.mdx:1"
+        ]
+      }
+    },
+    {
+      "id": "C09",
+      "name": "Shared semantic memory",
+      "criticality": 5,
+      "ours": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "live",
+        "components": [
+          "Memory",
+          "BORG"
+        ],
+        "finding": "Scoped cross-session semantic recall is implemented and the native memory search returned relevant candidates in this audit. That does not prove recall quality for every workload.",
+        "sources": [
+          "memory-runtime/mem0-mcp-server-v2:1932",
+          "borg/memory/bin/mem0-mcp-server-v2:1"
+        ]
+      },
+      "omnara": {
+        "status": "not_found",
+        "score": 0,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "No built-in cross-agent semantic store found in agent config, tools, storage and docs. Conversation history and compaction are present; external MCP memory is possible.",
+        "sources": [
+          "omnara/internal/compaction/planner.go:1",
+          "omnara/internal/toolcatalog/names.go:1",
+          "omnara/internal/agentconfig/source_schema.go:1"
+        ]
+      }
+    },
+    {
+      "id": "C10",
+      "name": "Temporal graph and provenance",
+      "criticality": 5,
+      "ours": {
+        "status": "partial",
+        "score": 3,
+        "evidence_tier": "source",
+        "components": [
+          "Memory",
+          "BORG"
+        ],
+        "finding": "Graph scope validation, current-only filtering and provenance-aware candidates exist. Live graph status passed but ingestion watermark and last complete scan were null.",
+        "sources": [
+          "memory-runtime/mem0_graph.py:145",
+          "memory-runtime/mem0-mcp-server-v2:700"
+        ]
+      },
+      "omnara": {
+        "status": "not_found",
+        "score": 0,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "No built-in temporal entity/relation graph or provenance-qualified shared recall found. An event timeline is a different capability.",
+        "sources": [
+          "omnara/internal/agentconfig/source_schema.go:1",
+          "omnara/docs/concepts.mdx:1"
+        ]
+      }
+    },
+    {
+      "id": "C11",
+      "name": "Capture, consolidation and retention",
+      "criticality": 4,
+      "ours": {
+        "status": "present",
+        "score": 3,
+        "evidence_tier": "source",
+        "components": [
+          "Memory",
+          "Plimsoll"
+        ],
+        "finding": "Hooks, bounded selection, guarded consolidation and retention plans are implemented. Semantic-preservation effectiveness was not measured here.",
+        "sources": [
+          "memory-runtime/memory_selection.py:295",
+          "memory-runtime/retention.py:639",
+          "memory-runtime/mem0_dream_safety.py:1"
+        ]
+      },
+      "omnara": {
+        "status": "partial",
+        "score": 1,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Context compaction and artifact/event persistence exist. Shared semantic consolidation and memory lifecycle were not found.",
+        "sources": [
+          "omnara/internal/compaction/planner.go:1",
+          "omnara/docs/events/artifacts.mdx:1"
+        ]
+      }
+    },
+    {
+      "id": "C12",
+      "name": "Local inference and learned extraction",
+      "criticality": 3,
+      "ours": {
+        "status": "present",
+        "score": 3,
+        "evidence_tier": "source",
+        "components": [
+          "Memory",
+          "BORG"
+        ],
+        "finding": "Pinned local extraction models and exam/canary training workflow. Included LoRA students remain benched or limited; no autonomous self-improvement claim is justified.",
+        "sources": [
+          "borg/README.md:108",
+          "borg/training/eval/canary_promotion.py:1",
+          "borg/THIRD_PARTY_NOTICES.md:23"
+        ]
+      },
+      "omnara": {
+        "status": "partial",
+        "score": 1,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Can use compatible local model endpoints; no extraction-model training or promotion workflow found.",
+        "sources": [
+          "omnara/docs/organization/model-providers.mdx:1",
+          "omnara/internal/modelprovider/resolver.go:1"
+        ]
+      }
+    },
+    {
+      "id": "C13",
+      "name": "Operator dashboard and live timelines",
+      "criticality": 4,
+      "ours": {
+        "status": "partial",
+        "score": 2,
+        "evidence_tier": "source",
+        "components": [
+          "Plimsoll",
+          "Ecosystem"
+        ],
+        "finding": "Several native consoles and a telemetry dashboard exist. A unified, independently installable execution/approval/cost console was not demonstrated.",
+        "sources": [
+          "Private Cloud snapshot (implementation details withheld)",
+          "borg/docs/WEB.md:1"
+        ]
+      },
+      "omnara": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Integrated agent conversations, configuration builder, streamed events, approvals and usage views in the web application. Source-level UX audit only.",
+        "sources": [
+          "omnara/frontend/apps/web/src/router.tsx:1",
+          "omnara/docs/events/interactions.mdx:1"
+        ]
+      }
+    },
+    {
+      "id": "C14",
+      "name": "Organizations, projects and roles",
+      "criticality": 4,
+      "ours": {
+        "status": "partial",
+        "score": 3,
+        "evidence_tier": "source",
+        "components": [
+          "BORG",
+          "Memory",
+          "Plimsoll"
+        ],
+        "finding": "Memory scopes, Inbox principals/grants and cloud tenants protect distinct surfaces. They do not form one consistent org/project/operator/viewer product contract.",
+        "sources": [
+          "borg/coordination/README.md:3",
+          "memory-runtime/mem0_scope_lib.py:1",
+          "Private Cloud snapshot (implementation details withheld)"
+        ]
+      },
+      "omnara": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Explicit organization and project roles, resource grants and separately scoped API identities. Role matrix is implemented in authz.",
+        "sources": [
+          "omnara/internal/authz/authz.go:9",
+          "omnara/docs/organization/members.mdx:14"
+        ]
+      }
+    },
+    {
+      "id": "C15",
+      "name": "Approvals and credential boundaries",
+      "criticality": 5,
+      "ours": {
+        "status": "present",
+        "score": 3,
+        "evidence_tier": "source",
+        "components": [
+          "BORG",
+          "Memory",
+          "Ecosystem"
+        ],
+        "finding": "Owner authentication, scope gates, value-blind credential handles and native holds. Broad native shell access remains a trusted-owner boundary, not a sandbox.",
+        "sources": [
+          "borg/connector/service_handles.py:1",
+          "borg/connector/borg_context_server.py:192"
+        ]
+      },
+      "omnara": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Tool allow/ask/deny, canonical authorized arguments, first-writer-wins interactions and secret references. Built-in/custom tools default allow; integration messaging only supports allow.",
+        "sources": [
+          "omnara/internal/toolpermission/interaction.go:50",
+          "omnara/docs/tools/permissions.mdx:12",
+          "omnara/docs/events/interactions.mdx:90"
+        ]
+      }
+    },
+    {
+      "id": "C16",
+      "name": "Schedules, events and notifications",
+      "criticality": 3,
+      "ours": {
+        "status": "present",
+        "score": 3,
+        "evidence_tier": "source",
+        "components": [
+          "Memory",
+          "Ecosystem"
+        ],
+        "finding": "Native hooks, scheduled memory jobs and platform automation exist across separate components. Cross-provider delivery is not one portable contract.",
+        "sources": [
+          "borg/memory/bin/mem0-fleet-hook:1",
+          "borg/README.md:1"
+        ]
+      },
+      "omnara": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Cron triggers, event streams, webhooks and first-party Slack integration have dedicated implementation and tests.",
+        "sources": [
+          "omnara/internal/crontrigger/service.go:1",
+          "omnara/internal/eventwebhook/sender.go:1",
+          "omnara/internal/integration/service.go:1"
+        ]
+      }
+    },
+    {
+      "id": "C17",
+      "name": "Capacity admission and work ownership",
+      "criticality": 5,
+      "ours": {
+        "status": "partial",
+        "score": 3,
+        "evidence_tier": "source",
+        "components": [
+          "Ecosystem",
+          "BORG"
+        ],
+        "finding": "Physical-resource measurements and native work claims are present. This run observed complete raw fleet measurements but failed aggregate fleet-context coverage and controller version drift.",
+        "sources": [
+          "borg/conductor/README.md:1",
+          "borg/coordination/README.md:3"
+        ]
+      },
+      "omnara": {
+        "status": "partial",
+        "score": 2,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Pool CPU/memory and machine-count caps, grants and runtime locks. No equivalent measured seven-host workload placement and independent work-ownership authority found.",
+        "sources": [
+          "omnara/docs/machines/pools.mdx:70",
+          "omnara/internal/harness/worker/worker.go:35"
+        ]
+      }
+    },
+    {
+      "id": "C18",
+      "name": "Subscription and account continuity",
+      "criticality": 4,
+      "ours": {
+        "status": "partial",
+        "score": 3,
+        "evidence_tier": "source",
+        "components": [
+          "Ecosystem"
+        ],
+        "finding": "Provider-specific account/allowance routing and recovery machinery. It remains separate from machine capacity, and this audit exposed compatibility friction before useful Grok work.",
+        "sources": [
+          "borg/conductor/README.md:1",
+          "borg/docs/PAPER-3-conductors.md:1"
+        ]
+      },
+      "omnara": {
+        "status": "partial",
+        "score": 1,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Provider configuration and bounded model retries exist; a subscription-seat allowance rotation and original-native-task recovery system was not found.",
+        "sources": [
+          "omnara/internal/modelretry/policy.go:1",
+          "omnara/docs/organization/model-providers.mdx:1"
+        ]
+      }
+    },
+    {
+      "id": "C19",
+      "name": "Token and cost observability",
+      "criticality": 5,
+      "ours": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Plimsoll"
+        ],
+        "finding": "Local metadata ledger, provider-specific telemetry, source-qualified token dimensions and reported/estimated/unknown costs. Native status command timed out; no current full-coverage claim.",
+        "sources": [
+          "plimsoll/packages/shared/src/economics/contracts.ts:10",
+          "plimsoll/packages/shared/src/economics/service.ts:86",
+          "plimsoll/README.md:1"
+        ]
+      },
+      "omnara": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Model-usage storage, provider-reported costs and project/org/profile views. Includes coverage counts; not equivalent to provider invoice reconciliation.",
+        "sources": [
+          "omnara/internal/storage/executionstore/model_usage.go:1",
+          "omnara/internal/storage/executionstore/model_usage_store.go:165",
+          "omnara/frontend/apps/web/src/routes/ProjectUsagePage.tsx:1"
+        ]
+      }
+    },
+    {
+      "id": "C20",
+      "name": "Shipped outcomes and value evidence",
+      "criticality": 5,
+      "ours": {
+        "status": "partial",
+        "score": 3,
+        "evidence_tier": "source",
+        "components": [
+          "Plimsoll"
+        ],
+        "finding": "GitHub linkage, immutable outcomes, first-pass yield and cost/acceptance contracts exist. Complete economic attribution and causal ROI are not established by source or telemetry.",
+        "sources": [
+          "plimsoll/packages/shared/src/metric-registry.ts:287",
+          "plimsoll/packages/shared/src/economics/service.ts:263",
+          "plimsoll/docs/learning-metric-truth.md:1"
+        ]
+      },
+      "omnara": {
+        "status": "partial",
+        "score": 1,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Queryable execution and usage can feed analytics; no built-in PR/check/mature-acceptance or cost-per-validated-outcome join found.",
+        "sources": [
+          "omnara/internal/storage/executionstore/model_usage_store.go:1",
+          "omnara/docs/self-hosting/architecture.mdx:51"
+        ]
+      }
+    },
+    {
+      "id": "C21",
+      "name": "Privacy and selective collection",
+      "criticality": 5,
+      "ours": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Plimsoll",
+          "Memory"
+        ],
+        "finding": "Metadata suppression before persistence, hashed identity, scoped recall and future-only enrollment contracts. This is metadata minimization, not universal zero-sensitive-data certification.",
+        "sources": [
+          "plimsoll/packages/shared/src/policy.ts:207",
+          "plimsoll/docs/privacy-spec.md:266",
+          "memory-runtime/mem0_scope_lib.py:1"
+        ]
+      },
+      "omnara": {
+        "status": "partial",
+        "score": 2,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Access control and secret boundaries exist, while event/tool content is retained for execution and analytics. No comparable metadata-only telemetry collection mode found.",
+        "sources": [
+          "omnara/docs/self-hosting/architecture.mdx:51",
+          "omnara/internal/secrets/secrets.go:1"
+        ]
+      }
+    },
+    {
+      "id": "C22",
+      "name": "Receipts, idempotency and acceptance",
+      "criticality": 5,
+      "ours": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "BORG",
+          "Plimsoll",
+          "Ecosystem"
+        ],
+        "finding": "Durable operation receipts and acceptance/evidence contracts; callers must inspect uncertain outcomes before retry. Forty-one focused connector tests passed; not a whole-stack guarantee.",
+        "sources": [
+          "borg/connector/operation_receipts.py:34",
+          "borg/connector/README.md:19",
+          "plimsoll/packages/shared/src/economics/contracts.ts:66"
+        ]
+      },
+      "omnara": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Transactional state, idempotent input/interaction resolution and explicit ambiguous recovery states. External side-effect semantics still require an adapter contract.",
+        "sources": [
+          "omnara/internal/storage/executionstore/agent_runtime_recovery_store.go:57",
+          "omnara/docs/events/interactions.mdx:90"
+        ]
+      }
+    },
+    {
+      "id": "C23",
+      "name": "Self-hosting and installation",
+      "criticality": 4,
+      "ours": {
+        "status": "partial",
+        "score": 3,
+        "evidence_tier": "source",
+        "components": [
+          "BORG",
+          "Plimsoll"
+        ],
+        "finding": "Independent owner installer and local-first collector. Apple Silicon is the verified installer target; Linux/Intel full acceptance and Plimsoll paid-cloud launch remain qualified.",
+        "sources": [
+          "borg/README.md:94",
+          "borg/README.md:119",
+          "Private Cloud snapshot (implementation details withheld)"
+        ]
+      },
+      "omnara": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "Documented Compose control plane and BYO daemon; operational dependencies include Postgres, Redis and blob storage. Fresh installation not tested in this audit.",
+        "sources": [
+          "omnara/compose.yaml:1",
+          "omnara/docs/self-hosting/architecture.mdx:1"
+        ]
+      }
+    },
+    {
+      "id": "C24",
+      "name": "API, SDK and contributor experience",
+      "criticality": 3,
+      "ours": {
+        "status": "present",
+        "score": 3,
+        "evidence_tier": "source",
+        "components": [
+          "BORG",
+          "Plimsoll"
+        ],
+        "finding": "Public source, native CLI/MCP, installer guides and component licenses. Multiple repositories and runtime/source drift create integration work for adopters.",
+        "sources": [
+          "borg/docs/COMPONENTS.md:1",
+          "borg/connector/README.md:1",
+          "plimsoll/README.md:1"
+        ]
+      },
+      "omnara": {
+        "status": "present",
+        "score": 4,
+        "evidence_tier": "source",
+        "components": [
+          "Omnara"
+        ],
+        "finding": "OpenAPI, generated TypeScript client/CLI, examples and contribution gates create a more unified developer entry point. Production support quality not measured.",
+        "sources": [
+          "omnara/api/openapi/openapi.yaml:1",
+          "omnara/CONTRIBUTING.md:1",
+          "omnara/CONTRIBUTING.md:1"
+        ]
+      }
+    }
+  ],
+  "axes": [
+    {
+      "name": "Managed execution",
+      "ours_score": 3,
+      "omnara_score": 4,
+      "reason": "Omnara provides a unified transactional agent lifecycle; ours composes native runtimes and receipts."
+    },
+    {
+      "name": "Collective memory",
+      "ours_score": 4,
+      "omnara_score": 1,
+      "reason": "Our explicit semantic and temporal recall exceeds conversation persistence; quality and freshness still need measurement."
+    },
+    {
+      "name": "Fleet operations",
+      "ours_score": 3,
+      "omnara_score": 3,
+      "reason": "We measure physical hosts and ownership; Omnara has cleaner pool lifecycle. Our model-label drift is a current usability defect."
+    },
+    {
+      "name": "Delivery economics",
+      "ours_score": 3,
+      "omnara_score": 2,
+      "reason": "Plimsoll adds outcome/coverage contracts, while neither source audit proves causal ROI or fully reconciled billing."
+    },
+    {
+      "name": "Product readiness",
+      "ours_score": 3,
+      "omnara_score": 4,
+      "reason": "Omnara has a cohesive API/dashboard. BORG and Plimsoll have distinct install and launch boundaries."
+    }
+  ],
+  "recommendations": [
+    {
+      "direction": "import",
+      "title": "Reuse Omnara interaction and timeline patterns in one operational view",
+      "value": 5,
+      "effort": "M",
+      "risk": "A viewer must preserve native authority and must not introduce a second work-state owner.",
+      "evidence": [
+        "omnara/docs/events/interactions.mdx:1",
+        "omnara/docs/events/streaming.mdx:1"
+      ]
+    },
+    {
+      "direction": "import",
+      "title": "Pilot Omnara as an optional managed execution backend",
+      "value": 4,
+      "effort": "M",
+      "risk": "API billing, event privacy, identity mapping and external-effect replay differ from native subscription tasks.",
+      "evidence": [
+        "omnara/internal/storage/executionstore/agent_runtime_recovery_store.go:1",
+        "omnara/docs/tools/mcp.mdx:1"
+      ]
+    },
+    {
+      "direction": "import",
+      "title": "Borrow machine-pool lifecycle for isolated disposable work",
+      "value": 4,
+      "effort": "L",
+      "risk": "Cloud sandbox costs, cleanup failures and native-desktop incompatibility; avoid migrating working host tasks.",
+      "evidence": [
+        "omnara/internal/machinepool/manager.go:71",
+        "omnara/docs/machines/pools.mdx:1"
+      ]
+    },
+    {
+      "direction": "contribute",
+      "title": "Offer a scoped BORG memory MCP reference integration",
+      "value": 5,
+      "effort": "S",
+      "risk": "Never expose owner-wide memory or private training data; enforce per-project scope and provenance.",
+      "evidence": [
+        "memory-runtime/mem0-mcp-server-v2:1932",
+        "omnara/docs/tools/mcp.mdx:1"
+      ]
+    },
+    {
+      "direction": "contribute",
+      "title": "Add a Plimsoll adapter for Omnara usage and accepted outcomes",
+      "value": 5,
+      "effort": "M",
+      "risk": "Stable event identities and missing-cost coverage must survive retries; token dimensions cannot be double-counted.",
+      "evidence": [
+        "omnara/internal/storage/executionstore/model_usage.go:1",
+        "plimsoll/packages/shared/src/metric-registry.ts:1"
+      ]
+    },
+    {
+      "direction": "contribute",
+      "title": "Supply optional measured BYO-host admission and ownership checks",
+      "value": 4,
+      "effort": "M",
+      "risk": "Do not turn stale telemetry or soft policy into universal enforcement; keep one native authority.",
+      "evidence": [
+        "borg/coordination/README.md:1",
+        "omnara/docs/machines/connect.mdx:1"
+      ]
+    }
+  ],
+  "limitations": [
+    "Source audit is not a production penetration test, load benchmark or customer acceptance.",
+    "No Omnara deployment or provider sandbox was started. Focused Go tests were blocked by installed Go 1.25.6 versus required 1.27.1.",
+    "BORG connector liveness and Mem0 recall were observed; graph ingestion watermark and last complete scan were null.",
+    "Forty-one focused BORG connector tests passed; they cover concurrency, process handoff and independent settings only.",
+    "Plimsoll tracked working-tree snapshot contains uncommitted work; its native status read was stopped after exceeding 150 seconds. Paid cloud readiness is not asserted.",
+    "Runtime memory source has capabilities beyond the public BORG snapshot. No private implementation or records are offered for contribution automatically.",
+    "Scores are this auditor's judgment under the common rubric, not benchmarks; missing capabilities mean not found in the inspected scope."
+  ],
+  "citation_refinement": "Directory-level citations narrowed to existing files after initial seal; no ratings or findings changed.",
+  "post_seal_corrections": [
+    {
+      "id": "C07",
+      "side": "omnara",
+      "from_score": 2,
+      "to_score": 0,
+      "reason": "Pre-review self-check: generic shell/web tools and future MCP extensibility must not receive credit for implemented native desktop/browser interaction. Source finding unchanged; rubric applied more strictly."
+    },
+    {
+      "id": "C01",
+      "side": "omnara",
+      "score_changed": false,
+      "reason": "After Opus review, verified production network restrictions and qualified local-endpoint compatibility."
+    }
+  ]
+}
